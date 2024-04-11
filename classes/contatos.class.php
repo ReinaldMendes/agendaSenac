@@ -99,5 +99,33 @@ class Contatos {
             echo"ERRO";
         }
     }
+    public function editar( $nome,$email, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $foto,$id){
+        $emailExistente = $this->existeEmail($email);
+        if(count ($emailExistente )> 0 && $emailExistente['id']!=$id){
+            return FALSE;
+        }else{
+            try{
+                $sql = $this->con->conectar()->prepare("UPDATE contatos SET nome = :nome, email= :email, telefone = :telefone, 
+                cidade = :cidade, rua = :rua, numero= :numero, bairro = :bairro, cep = :cep,
+                profissao = :profissao, foto = :foto WHERE id = :id ");
+                $sql->bindValue(':nome', $nome); 
+                $sql->bindValue(':email', $email); 
+                $sql->bindValue(':telefone', $telefone); 
+                $sql->bindValue(':cidade', $cidade); 
+                $sql->bindValue(':rua', $rua); 
+                $sql->bindValue(':numero', $numero); 
+                $sql->bindValue(':bairro', $bairro); 
+                $sql->bindValue(':cep', $cep); 
+                $sql->bindValue(':profissao', $profissao); 
+                $sql->bindValue(':foto', $foto); 
+                $sql->bindValue(':id', $id); 
+                $sql->execute();
+                return TRUE;           
     
+            }catch(PDOException $ex){
+                echo'ERRO: '.$ex->getMessage();
+            }
+        }
+
+    }
 }

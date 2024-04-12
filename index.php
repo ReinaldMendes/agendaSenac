@@ -40,7 +40,7 @@ $contato = new Contatos();
             <td><?php echo $item['foto']; ?> </td>
             <td>
                 <a href="editarContato.php?id=<?php echo $item ['id'];?>">EDITAR</a>
-                <a href="#">|EXCLUIR</a>
+                <a href="excluirContato.php?id=<?php echo $item ['id'];?>"onclick="return confirm('Tem certeza que quer excluir este contato?')">|EXCLUIR</a>
             </td>
         </tr>
     </tbody>

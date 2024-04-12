@@ -128,4 +128,10 @@ class Contatos {
         }
 
     }
+    public function excluir($id){
+        $sql = $this->con->conectar()->prepare("DELETE FROM contatos WHERE id = :id");
+        $sql->bindValue(':id', $id);
+        $sql->execute();
+
+    }
 }

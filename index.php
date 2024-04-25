@@ -3,6 +3,7 @@ include 'classes/contatos.class.php';
 $contato = new Contatos();
 ?>
 
+
 <h1>Agenda</h1>
 <button> <a href = "adicionarContato.php"> Adicionar </a></button>
 <br><br>

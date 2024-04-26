@@ -1,7 +1,7 @@
 <?php
-include 'classes/contatos.class.php';
+include 'classes/users.class.php';
 include 'inc/header.inc.php';
-$contato = new Contatos();
+$users = new Users();
 ?>
 <style type="text/css">
     .row{
@@ -12,10 +12,10 @@ $contato = new Contatos();
 <main>
     <section class="jumbotron text-black-50 text-center">
         <div class="container">
-            <h1 class="jumbotron-heading">Contatos</h1>
+            <h1 class="jumbotron-heading">Usuarios</h1>
         </div>
     </section>
-        <a class="btn btn-primary" href="adicionarContato.php">Adicionar</a>
+        <a class="btn btn-primary" href="adicionarUsers.php">Adicionar</a>
         <br><br>
             <div class="container">
                 <div class ="row align-items-center justify-content-center">
@@ -27,39 +27,25 @@ $contato = new Contatos();
                                     <th>ID</th>
                                     <th>NOME</th>
                                     <th>EMAIL</th>
-                                    <th>TELEFONE</th>
-                                    <th>CIDADE</th>
-                                    <th>RUA</th>
-                                    <th>NÚMERO</th>
-                                    <th>BAIRRO</th>
-                                    <th>CEP</th>
-                                    <th>PROFISSÃO</th>
-                                    <th>FOTO</th>
-                                    <th>DATA NASC</th>
+                                    <th>SENHA</th>
+                                    <th>PERMICOES</th>
                                     <th>AÇÕES</th>
                                 </tr>
                          </thead>
                             <tbody>
                                 <?php
-                                $lista = $contato->listar();
+                                $lista = $users->listar();
                                 foreach ($lista as $item):
                                 ?>
                                 <tr>
                                     <td><?php echo $item['id']; ?></td>
                                     <td><?php echo $item['nome']; ?></td>
                                     <td><?php echo $item['email']; ?></td>
-                                    <td><?php echo $item['telefone']; ?></td>
-                                    <td><?php echo $item['cidade']; ?></td>
-                                    <td><?php echo $item['rua']; ?></td>
-                                    <td><?php echo $item['numero']; ?></td>
-                                    <td><?php echo $item['bairro']; ?></td>
-                                    <td><?php echo $item['cep']; ?></td>
-                                    <td><?php echo $item['profissao']; ?></td>
-                                    <td><?php echo $item['foto']; ?></td>
-                                    <td><?php echo implode ("/",array_reverse (explode("-",$item['data_nasc'])));?></td>
+                                    <td><?php echo $item['senha']; ?></td>
+                                    <td><?php echo $item['permicoes']; ?></td>
                                     <td>
-                                        <a href="editarContato.php?id=<?php echo $item['id']; ?>" class="btn btn-warning">EDITAR</a>
-                                        <a href="excluirContato.php?id=<?php echo $item['id']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que quer excluir este contato?')">EXCLUIR</a>
+                                        <a href="editarUsers.php?id=<?php echo $item['id']; ?>" class="btn btn-warning">EDITAR</a>
+                                        <a href="excluirUsers.php?id=<?php echo $item['id']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que quer excluir este contato?')">EXCLUIR</a>
                                     </td>
                                 </tr>
                                 <?php

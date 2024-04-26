@@ -12,9 +12,10 @@ if(!empty($_POST['id'])){
     $cep= $_POST['cep'];
     $profissao = $_POST['profissao'];
     $foto = $_POST['foto'];
+    $data_nasc= $_POST['data_nasc'];
     $id = $_POST['id'];
     if(!empty($email)){
-        $contato->editar( $nome, $email, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $foto, $id);
+        $contato->editar( $nome, $email, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $foto,$data_nasc, $id);
     }
 
     header('Location: /agendaSenac');

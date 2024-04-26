@@ -39,7 +39,9 @@
     <input type="text" name="profissao" value="<?php echo $info ['profissao']?>"/><br><br>
     Foto: <br>
     <input type="text" name="foto" value="<?php echo $info ['foto']?>"/><br><br>
-   
+    Data Nasc: <br>
+    <input type="date" name="data_nasc" value="<?php echo $info ['data_nasc']?>"/><br><br>
+
     <input type="submit" name="btCadastrar" value="SALVAR"/>
  </form>
  

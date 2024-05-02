@@ -14,15 +14,15 @@ require_once 'inc/header.inc.php';
     </div>
   </div>
   <div class="form-group row">
-    <label for="senha" class="col-sm-2 col-form-label">Senha</label>
+    <label for="email" class="col-sm-2 col-form-label">Email</label>
     <div class="col-sm-10">
-      <input type="email" class="form-control" name="senha" placeholder="Senha">
+      <input type="email" class="form-control" name="email" placeholder="Email">
     </div>
   </div>
   <div class="form-group row">
     <label for="telefone" class="col-sm-2 col-form-label">Telefone</label>
     <div class="col-sm-10">
-      <input type="email" class="form-control" name="telefone" placeholder="Senha">
+      <input type="text" class="form-control" name="telefone" placeholder="Senha">
     </div>
   </div>
   <div class="form-group row">

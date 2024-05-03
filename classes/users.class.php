@@ -6,13 +6,20 @@ class Users {
     private $nome ;
     private $email; 
 	private $senha; 
-	private	$permicoes; 
+	private	$permissoes; 
 	
 
     private $con;
 
     public function __construct(){  // underline duplo considerado um comando mágico, ou seja, tem uma carta na manga pra facilitar a programação
         $this->con = new Conexao();
+    }
+
+    public function __set($atributo,$valor){
+        $this->atributo = $valor;
+    }
+    public function __get($atributo){
+        return $this->atributo;
     }
     
     //vamos fazer uma validação pelo email, que é um atributo único, assim evitamos que haja duplicidade no cadastro de usuário
@@ -29,21 +36,21 @@ class Users {
         }
         return $array;
     }  //	id	nome	email	senha	permicoes
-    public function adicionar($email, $nome, $senha, $permicoes){
+    public function adicionar($email, $nome, $senha, $permissoes){
         $emailExistente = $this->existeEmail($email);
         if(count($emailExistente) == 0){
             try{
                 $this->nome = $nome;
                 $this->email = $email;
                 $this->senha = $senha;
-                $this->permicoes = $permicoes;
+                $this->permissoes = $permissoes;
                 
-                $sql = $this->con->conectar()->prepare("INSERT INTO users(nome, email, senha, permicoes)
-                    VALUES(:nome, :email, :senha, :permicoes)");
+                $sql = $this->con->conectar()->prepare("INSERT INTO users(nome, email, senha, permissoes)
+                    VALUES(:nome, :email, :senha, :permissoes)");
                     $sql->bindParam(":nome", $this->nome, PDO::PARAM_STR);
                     $sql->bindParam(":email", $this->email, PDO::PARAM_STR);
                     $sql->bindParam(":senha", $this->senha, PDO::PARAM_STR);
-                    $sql->bindParam(":permicoes", $this->permicoes, PDO::PARAM_STR);
+                    $sql->bindParam(":permissoes", $this->permissoes, PDO::PARAM_STR);
 
                     $sql->execute();
                 return TRUE;
@@ -60,7 +67,7 @@ class Users {
     }  
     public function listar(){
         try{
-            $sql = $this->con->conectar()->prepare("SELECT id, nome, email, senha, permicoes FROM users");
+            $sql = $this->con->conectar()->prepare("SELECT id, nome, email, senha, permissoes FROM users");
             $sql->execute(); 
             return $sql->fetchAll();           
 
@@ -83,18 +90,18 @@ class Users {
             echo"ERRO";
         }
     }
-    public function editar( $nome,$email, $senha, $permicoes, $id){
+    public function editar( $nome,$email, $senha, $permissoes, $id){
         $emailExistente = $this->existeEmail($email);
         if(count ($emailExistente )> 0 && $emailExistente['id']!=$id){
             return FALSE;
         }else{
             try{
                 $sql = $this->con->conectar()->prepare("UPDATE users SET nome = :nome, email= :email, senha = :senha, 
-                permicoes = :permicoes WHERE id = :id ");
+                permissoes = :permissoes WHERE id = :id ");
                 $sql->bindValue(':nome', $nome); 
                 $sql->bindValue(':email', $email); 
                 $sql->bindValue(':senha', $senha); 
-                $sql->bindValue(':permicoes', $permicoes);  
+                $sql->bindValue(':permissoes', $permissoes);  
                 $sql->bindValue(':id', $id); 
                 $sql->execute();
                 return TRUE;           
@@ -110,5 +117,19 @@ class Users {
         $sql->bindValue(':id', $id);
         $sql->execute();
 
+    }
+    public function fazerLogin($email,$senha){
+        $sql = $this->con->conectar()->prepare("SELECT * FROM users WHERE email = :email AND senha = :senha");
+        $sql->bindValue(":email", $email);
+        $sql->bindValue(":senha", $senha);
+        $sql->execute();
+
+        if ($sql->rowCount () > 0){
+            $sql = $sql->fetch();
+            $_SESSION["logado"]= $sql['id'];
+
+            return TRUE;
+        }
+        return FALSE;
     }
 }

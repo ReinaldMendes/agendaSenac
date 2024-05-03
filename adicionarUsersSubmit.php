@@ -4,11 +4,11 @@ $users = new Users();
 if(!empty($_POST['email'])){
     $nome = $_POST['nome'];
     $email = $_POST['email'];
-    $telefone = $_POST['senha'];
-    $cidade = $_POST['permicoes'];
+    $senha = md5($_POST['senha']);
+    $permissoes = $_POST['permissoes'];
 
 
-    $users->adicionar($email, $nome, $senha, $permicoes);
+    $users->adicionar($email, $nome, $senha, $permissoes);
     header('Location: gestaoUsuario.php');
 
 }else{

@@ -1,4 +1,5 @@
 <?php
+session_start(); 
     include 'classes/users.class.php';
     $users = new Users();
 
@@ -24,9 +25,9 @@
     Email: <br>
     <input type="text" name="email" value="<?php echo $info ['email']?>"/><br><br>
     Senha: <br>
-    <input type="text" name="telefone" value="<?php echo $info ['senha']?>"/><br><br>
+    <input type="text" name="senha" value="<?php echo $info ['senha']?>"/><br><br>
     Pemicoes: <br>
-    <input type="text" name="cidade" value="<?php echo $info ['permicoes']?>"/><br><br>
+    <input type="text" name="permissoes" value="<?php echo $info ['permissoes']?>"/><br><br>
    
     <input type="submit" name="btCadastrar" value="SALVAR"/>
  </form>

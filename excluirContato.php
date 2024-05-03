@@ -1,4 +1,5 @@
 <?php
+session_start(); 
 include 'classes/contatos.class.php';
 $users = new Users();
 

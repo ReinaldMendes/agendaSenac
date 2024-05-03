@@ -1,4 +1,5 @@
 <?php
+session_start(); 
     include 'classes/contatos.class.php';
     $contato = new Contatos();
 
@@ -42,7 +43,7 @@
     Data Nasc: <br>
     <input type="date" name="data_nasc" value="<?php echo $info ['data_nasc']?>"/><br><br>
 
-    <input type="submit" name="btCadastrar" value="SALVAR"/>
+    <input type="submit" name="btCadastrar" class="btn btn-primary" value="SALVAR"/>
  </form>
  
  

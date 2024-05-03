@@ -5,7 +5,7 @@ if(!empty($_POST['id'])){
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $senha = $_POST['senha'];
-    $permicoes = $_POST['permicoes'];
+    $permissoes = $_POST['permissoes'];
     $id = $_POST['id'];
     if(!empty($email)){
         $users->editar( $nome, $email, $senha, $permicoes, $id);

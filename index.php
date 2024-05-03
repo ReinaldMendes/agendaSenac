@@ -1,77 +1,45 @@
 <?php
-include 'classes/contatos.class.php';
+session_start(); 
 include 'inc/header.inc.php';
+require 'classes/contatos.class.php';
+require 'classes/users.class.php';
+
+
+if(!isset($_SESSION['logado'])){
+    header("Location: login.php");
+    exit;
+}
 $contato = new Contatos();
+$users = new Users();
+//$users->setUsers($_SESSION['logado']);
 ?>
-<style type="text/css">
-    .row{
-        background-color: #ddc;
-        padding:10px;
-    }
+<style>
+body {
+    background-color: #ccc;
+    
+  }
+
+  h1 {
+    text-align: center; /* Centraliza o conteúdo na horizontal */
+  }
 </style>
-<main>
-    <section class="jumbotron text-black-50 text-center">
-        <div class="container">
-            <h1 class="jumbotron-heading">Contatos</h1>
-        </div>
-    </section>
-        <a class="btn btn-primary" href="adicionarContato.php">Adicionar</a>
-        <br><br>
-            <div class="container">
-                <div class ="row align-items-center justify-content-center">
-                    <div class="col-12">
-                        <div class="table-responsive">
-                        <table class="table table-bordered table-dark">
-                            <thead class="thead-dark">
-                                <tr>
-                                    <th>ID</th>
-                                    <th>NOME</th>
-                                    <th>EMAIL</th>
-                                    <th>TELEFONE</th>
-                                    <th>CIDADE</th>
-                                    <th>RUA</th>
-                                    <th>NÚMERO</th>
-                                    <th>BAIRRO</th>
-                                    <th>CEP</th>
-                                    <th>PROFISSÃO</th>
-                                    <th>FOTO</th>
-                                    <th>DATA NASC</th>
-                                    <th>AÇÕES</th>
-                                </tr>
-                         </thead>
-                            <tbody>
-                                <?php
-                                $lista = $contato->listar();
-                                foreach ($lista as $item):
-                                ?>
-                                <tr>
-                                    <td><?php echo $item['id']; ?></td>
-                                    <td><?php echo $item['nome']; ?></td>
-                                    <td><?php echo $item['email']; ?></td>
-                                    <td><?php echo $item['telefone']; ?></td>
-                                    <td><?php echo $item['cidade']; ?></td>
-                                    <td><?php echo $item['rua']; ?></td>
-                                    <td><?php echo $item['numero']; ?></td>
-                                    <td><?php echo $item['bairro']; ?></td>
-                                    <td><?php echo $item['cep']; ?></td>
-                                    <td><?php echo $item['profissao']; ?></td>
-                                    <td><?php echo $item['foto']; ?></td>
-                                    <td><?php echo implode ("/",array_reverse (explode("-",$item['data_nasc'])));?></td>
-                                    <td>
-                                        <a href="editarContato.php?id=<?php echo $item['id']; ?>" class="btn btn-warning">EDITAR</a>
-                                        <a href="excluirContato.php?id=<?php echo $item['id']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que quer excluir este contato?')">EXCLUIR</a>
-                                    </td>
-                                </tr>
-                                <?php
-                                endforeach;
-                                ?>
-                            </tbody>
-                        </table>
-                        </div>
-                    </div>
-                </div> 
-            </div>           
-</main>
+<h1>AGENDA SENAC</h1>
+
+<br><br>
+<div class="container-fluid">
+  <div class="jumbotron"> 
+    <h1> SEJA BEM VINDO A PARTE ADMINISTRATIVA </h1>
+    <h1> ESCOLHA UMA DAS OPÇÕES </h1>
+</div>
+<ul>
+    <li> <button><a href="gestaoUsuario.php">Gestão de Usuário</a></button> </li>
+    <li> <button><a href="gestaoContatos.php">Gestão de Contatos</a> </button></li>
+    <li><button> <a href="#">Gestão de Sub-Área</a> </button></li>
+    <li><button><a href="#">Gestão de Conteúdos</a> </button></li>
+  </ul>
+    
+  </div>
+</div>
 
 <?php
 include 'inc/footer.inc.php';

@@ -1,11 +1,14 @@
 <?php
 
 require_once 'inc/header.inc.php';
-
+session_start(); 
 ?>
- 
- <h1>ADICIONAR CONTATO</h1>
 
+ <br><br>
+        <div class="container">
+            <h1 class="jumbotron-heading">Adicionar Contato</h1>
+        </div>
+<br> <br>
  <form method="POST" action="adicionarContatoSubmit.php">
   <div class="form-group row">
     <label for="nome" class="col-sm-2 col-form-label">Nome</label>
@@ -61,5 +64,6 @@ require_once 'inc/header.inc.php';
       <input type="date" class="form-control" name="data_nasc" placeholder="Data Nasc">
     </div>
   </div>
-  <input type="submit" name="btCadastrar" value="ADICIONAR"/>
+  <br> <br>
+  <input type="submit" name="btCadastrar" class="btn btn-primary"  value="Adicionar"/>
 </form>

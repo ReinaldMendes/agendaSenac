@@ -1,4 +1,5 @@
 <?php
+session_start(); 
 include 'classes/users.class.php';
 $users = new Users();
 

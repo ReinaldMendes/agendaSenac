@@ -1,8 +1,13 @@
 <?php
 session_start(); 
-include 'classes/contatos.class.php';
+require 'classes/contatos.class.php';
 include 'inc/header.inc.php';
+
 $contato = new Contatos();
+if(!isset($_SESSION['logado'])){
+    header("Location: login.php");
+    exit;
+}
 ?>
 <style type="text/css">
     .row{
@@ -17,7 +22,7 @@ $contato = new Contatos();
         </div>
     </section>
         <a class="btn btn-primary" href="adicionarContato.php">Adicionar</a><br><br>
-        <a class="btn btn-primary" href="sair.php">Sair</a>
+        <a class="btn btn-primary" href="index.php">Voltar</a>
         <br><br>
             <div class="container">
                 <div class ="row align-items-center justify-content-center">

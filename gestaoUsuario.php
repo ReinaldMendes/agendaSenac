@@ -1,11 +1,15 @@
 <?php
 session_start(); 
-include 'classes/users.class.php';
+require 'classes/users.class.php';
 include 'inc/header.inc.php';
 
 
 $users = new Users();
-
+if(!isset($_SESSION['logado'])){
+    header("Location: login.php");
+    exit;
+}
+$users->setUsers($_SESSION['logado']);
 ?>
 <style type="text/css">
     .row{
@@ -19,8 +23,8 @@ $users = new Users();
             <h1 class="jumbotron-heading">Usuarios</h1>
         </div>
     </section>
-        <a class="btn btn-primary" href="adicionarUsers.php">Adicionar</a>
-        <a class="btn btn-primary" href="sair.php">Sair</a>
+        <?php if ($users->temPermissoes('add')):?><a class="btn btn-primary" href="adicionarUsers.php">Adicionar </a> <?php endif;?> <br><br>
+        <a class="btn btn-primary" href="index.php">Voltar</a>
         <br><br>
             <div class="container">
                 <div class ="row align-items-center justify-content-center">
@@ -49,8 +53,8 @@ $users = new Users();
                                     <td><?php echo $item['senha']; ?></td>
                                     <td><?php echo $item['permissoes']; ?></td>
                                     <td>
-                                        <a href="editarUsers.php?id=<?php echo $item['id']; ?>" class="btn btn-warning">EDITAR</a>
-                                        <a href="excluirUsers.php?id=<?php echo $item['id']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que quer excluir este contato?')">EXCLUIR</a>
+                                    <?php if ($users->temPermissoes('edit')):?> <a href="editarUsers.php?id=<?php echo $item['id']; ?>" class="btn btn-warning">EDITAR</a><?php endif;?>
+                                    <?php if ($users->temPermissoes('del')):?><a href="excluirUsers.php?id=<?php echo $item['id']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que quer excluir este contato?')">|EXCLUIR</a> <?php endif;?>
                                     </td>
                                 </tr>
                                 <?php

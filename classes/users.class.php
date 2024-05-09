@@ -132,4 +132,26 @@ class Users {
         }
         return FALSE;
     }
+    public function setUsers($id){
+        $this->id = $id;
+        $sql = $this->con->conectar()->prepare("SELECT * FROM users WHERE id = :id");
+        $sql ->bindValue(':id', $id);
+        $sql->execute();
+
+        if($sql->rowCount()>0){
+            $sql = $sql->fetch();
+            $this->permissoes = explode(',',$sql['permissoes']);//transforma em array (add,edit,del,super)
+        }
+    }
+    public function getPermissoes(){
+        return $this->permissoes;
+
+    }
+    public function temPermissoes($p){
+         if(in_array($p, $this->permissoes)){
+            return TRUE;
+         }else{
+                return FALSE;
+            }
+    }
 }

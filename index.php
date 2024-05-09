@@ -1,16 +1,14 @@
 <?php
 session_start(); 
 include 'inc/header.inc.php';
-require 'classes/contatos.class.php';
-require 'classes/users.class.php';
+
 
 
 if(!isset($_SESSION['logado'])){
     header("Location: login.php");
     exit;
 }
-$contato = new Contatos();
-$users = new Users();
+
 //$users->setUsers($_SESSION['logado']);
 ?>
 <style>
@@ -32,10 +30,11 @@ body {
     <h1> ESCOLHA UMA DAS OPÇÕES </h1>
 </div>
 <ul>
-    <li> <button><a href="gestaoUsuario.php">Gestão de Usuário</a></button> </li>
-    <li> <button><a href="gestaoContatos.php">Gestão de Contatos</a> </button></li>
-    <li><button> <a href="#">Gestão de Sub-Área</a> </button></li>
-    <li><button><a href="#">Gestão de Conteúdos</a> </button></li>
+    <li> <a class="btn btn-primary" href="gestaoUsuario.php">Gestão de Usuário</a>  </li><br>
+    <li> <a class="btn btn-primary" href="gestaoContatos.php">Gestão de Contatos</a> </li><br>
+    <li><a class="btn btn-primary" href="#">Gestão de Sub-Área</a> </li><br>
+    <li><a class="btn btn-primary"  href="#">Gestão de Conteúdos</a> </li><br><br>
+    <a class="btn btn-primary" href="sair.php">Sair</a>
   </ul>
     
   </div>

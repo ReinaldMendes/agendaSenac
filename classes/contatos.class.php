@@ -1,6 +1,6 @@
 <?php
 require 'conexao.class.php';  //para poder usar a classe conexao pelo banco de dados
-class Contatos {
+class Contatos {//idPrestador	ServicosOferecidos	areaAtuacao	horarioTrabalho	meioLocomocao
 
     private $id;
     private $nome ;
@@ -138,4 +138,5 @@ class Contatos {
         $sql->execute();
 
     }
+    
 }

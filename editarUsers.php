@@ -14,6 +14,11 @@ session_start();
         header("Location: /agendaSenac");
             exit;
     }
+
+    if(!isset($_SESSION['logado'])){
+        header("Location: login.php");
+        exit;
+    }
 ?>
 
 

@@ -1,5 +1,6 @@
 <?php
 session_start(); 
+    require_once 'inc/header.inc.php';
     include 'classes/contatos.class.php';
     $contato = new Contatos();
 
@@ -14,35 +15,91 @@ session_start();
         header("Location: /agendaSenac");
             exit;
     }
+
+    if(!isset($_SESSION['logado'])){
+        header("Location: login.php");
+        exit;
+    }
 ?>
 
 
-<h1>EDITAR CONTATO</h1>
+<br><br>
+        <div class="container">
+            <h1 class="jumbotron-heading">Editar Contato</h1>
+        </div>
+<br> <br>
+
  <form method="POST" action="editarContatoSubmit.php">
     <input type ="hidden" name="id" value="<?php echo $info ['id']?>">
-    Nome: <br>
-    <input type="text" name="nome" value="<?php echo $info ['nome']?>"/><br><br>
-    Email: <br>
-    <input type="text" name="email" value="<?php echo $info ['email']?>"/><br><br>
-    Telefone: <br>
-    <input type="text" name="telefone" value="<?php echo $info ['telefone']?>"/><br><br>
-    Cidade: <br>
-    <input type="text" name="cidade" value="<?php echo $info ['cidade']?>"/><br><br>
-    Rua: <br>
-    <input type="text" name="rua" value="<?php echo $info ['rua']?>"/><br><br>
-    Número: <br>
-    <input type="text" name="numero" value="<?php echo $info ['numero']?>"/><br><br>
-    Bairro: <br>
-    <input type="text" name="bairro" value="<?php echo $info ['bairro']?>"/><br><br>
-    Cep: <br>
-    <input type="text" name="cep" value="<?php echo $info ['cep']?>"/><br><br>
-    Profissão: <br>
-    <input type="text" name="profissao" value="<?php echo $info ['profissao']?>"/><br><br>
-    Foto: <br>
-    <input type="text" name="foto" value="<?php echo $info ['foto']?>"/><br><br>
-    Data Nasc: <br>
-    <input type="date" name="data_nasc" value="<?php echo $info ['data_nasc']?>"/><br><br>
 
+    <div class="form-group row">
+        <label for="nome" class="col-sm-2 col-form-label">Nome</label>
+        <div class="col-sm-10">
+         <input type="text" class="form-control"  name="nome" value="<?php echo $info ['nome']?>"/>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="email" class="col-sm-2 col-form-label">Email</label>
+        <div class="col-sm-10">
+         <input type="text" class="form-control" name="email" value="<?php echo $info ['email']?>"/>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="profissao" class="col-sm-2 col-form-label">Profissão</label>
+        <div class="col-sm-10">
+         <input type="text" class="form-control" name="profissao" value="<?php echo $info ['profissao']?>"/>    
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="telefone" class="col-sm-2 col-form-label">Telefone</label>
+        <div class="col-sm-10">
+         <input type="text" class="form-control" name="telefone" value="<?php echo $info ['telefone']?>"/>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="numero" class="col-sm-2 col-form-label">Numero</label>
+        <div class="col-sm-10">
+         <input type="text" class="form-control"  name="numero" value="<?php echo $info ['numero']?>"/>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="rua" class="col-sm-2 col-form-label">Rua</label>
+        <div class="col-sm-10">
+         <input type="text"class="form-control" name="rua" value="<?php echo $info ['rua']?>"/>
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="bairro" class="col-sm-2 col-form-label">Bairro</label>
+        <div class="col-sm-10">
+         <input type="text" class="form-control" name="bairro" value="<?php echo $info ['bairro']?>"/>
+        </div>
+    </div>    
+    <div class="form-group row">
+        <label for="cep" class="col-sm-2 col-form-label">Cep</label>
+        <div class="col-sm-10">
+         <input type="text" class="form-control" name="cep" value="<?php echo $info ['cep']?>"/>
+        </div>
+    </div>      
+    <div class="form-group row">
+        <label for="cidade" class="col-sm-2 col-form-label">Cidade</label>
+        <div class="col-sm-10">
+         <input type="text" class="form-control" name="cidade" value="<?php echo $info ['cidade']?>"/>
+        </div>
+    </div>     
+    <div class="form-group row">
+        <label for="foto" class="col-sm-2 col-form-label">Foto</label>
+        <div class="col-sm-10">
+         <input type="text" class="form-control" name="foto" value="<?php echo $info ['foto']?>"/>
+        </div>
+    </div>      
+    <div class="form-group row">
+        <label for="data_nasc" class="col-sm-2 col-form-label">Data Nasc</label>
+        <div class="col-sm-10">
+         <input type="date" class="form-control" name="data_nasc" value="<?php echo $info ['data_nasc']?>"/>
+        </div>
+    </div>
+    <br> <br>        
+  
     <input type="submit" name="btCadastrar" class="btn btn-primary" value="SALVAR"/>
  </form>
  

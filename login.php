@@ -18,13 +18,28 @@ if(!empty($_POST ['email'])){
 
 }
 ?>
-<h1>LOGIN</h1>
-<form method="POST"> 
-    Email: <br>
-    <input type="email" name="email" placeholder="Digite seu email"> <br> <br>
-    Senha: <br>
-    <input type="password" name="senha" placeholder="Digite sua senha"> <br> <br>
-    <input type="submit" value ="Entrar">
+<br> <br>
+<link rel="stylesheet" href="css/style-login.css">
+<head>
+<div class="login-container">
+    <h1>LOGIN</h1>
+
+    <form method="POST">
+        <div>
+            <label for="email"> Usuário: </label>
+            <input type="text" name="email" placeholder="Digite seu email">
+        </div>
+        <div>
+            <label for="senha">Senha: </label>
+            <input type="password"  name="senha" placeholder="Digite sua senha">
+        </div>
+        <div>
+            <button type="submit">Entrar</button>
+        </div>
+    </form>
+</div>
+</head>
+
 
 <?php
 include 'inc/footer.inc.php';

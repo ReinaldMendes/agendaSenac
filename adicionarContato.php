@@ -2,6 +2,10 @@
 
 require_once 'inc/header.inc.php';
 session_start(); 
+if(!isset($_SESSION['logado'])){
+  header("Location: login.php");
+  exit;
+}
 ?>
 
  <br><br>
@@ -23,15 +27,27 @@ session_start();
     </div>
   </div>
   <div class="form-group row">
+    <label for="profissao" class="col-sm-2 col-form-label">Profissão</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="profissao" placeholder="Profissão">
+    </div>
+  </div>
+  <div class="form-group row">
     <label for="telefone" class="col-sm-2 col-form-label">Telefone</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="telefone" placeholder="Senha">
+      <input type="text" class="form-control" name="telefone" placeholder="telefone">
     </div>
   </div>
   <div class="form-group row">
     <label for="numero" class="col-sm-2 col-form-label">Número</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" id="numero" placeholder="Número">
+      <input type="text" class="form-control" name="numero" placeholder="Número">
+    </div>
+  </div>
+  <div class="form-group row">
+    <label for="rua" class="col-sm-2 col-form-label">Rua</label>
+    <div class="col-sm-10">
+      <input type="text" class="form-control" name="rua" placeholder="Rua">
     </div>
   </div>
   <div class="form-group row">
@@ -47,15 +63,15 @@ session_start();
     </div>
   </div>
   <div class="form-group row">
-    <label for="profissao" class="col-sm-2 col-form-label">Profissão</label>
+    <label for="cidade" class="col-sm-2 col-form-label">Cidade</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="profissao" placeholder="Profissão">
+      <input type="text" class="form-control" name="cidade" placeholder="Cidade">
     </div>
   </div>
   <div class="form-group row">
     <label for="foto" class="col-sm-2 col-form-label">Foto</label>
     <div class="col-sm-10">
-      <input type="text" class="form-control" name="foto" placeholder="Salvar Foto">
+      <input type="text" class="form-control" name="foto" placeholder="Salve sua foto">
     </div>
   </div>
   <div class="form-group row">

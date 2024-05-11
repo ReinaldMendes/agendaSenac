@@ -54,7 +54,8 @@ $users->setUsers($_SESSION['logado']);
                                     <td><?php echo $item['permissoes']; ?></td>
                                     <td>
                                     <?php if ($users->temPermissoes('edit')):?> <a href="editarUsers.php?id=<?php echo $item['id']; ?>" class="btn btn-warning">EDITAR</a><?php endif;?>
-                                    <?php if ($users->temPermissoes('del')):?><a href="excluirUsers.php?id=<?php echo $item['id']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que quer excluir este contato?')">|EXCLUIR</a> <?php endif;?>
+                                    <?php if ($users->temPermissoes('del')):?><a href="excluirUsers.php?id=<?php echo $item['id']; ?>" class="btn btn-danger" 
+                                        onclick="return confirm('Tem certeza que quer excluir este contato?')">EXCLUIR</a> <?php endif;?>
                                     </td>
                                 </tr>
                                 <?php

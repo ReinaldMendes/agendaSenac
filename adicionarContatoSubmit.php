@@ -15,7 +15,7 @@ if(!empty($_POST['email'])){
     $data_nasc = $_POST['data_nasc'];
 
     $contato->adicionar($email, $nome, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $foto,$data_nasc);
-    header('Location: index.php');
+    header('Location: /agendaSenac/gestaoContatos.php');
 
 }else{
     echo '<script type= "text/javascript">alert("Email já cadastrado!!");</script>';

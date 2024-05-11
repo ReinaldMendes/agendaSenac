@@ -32,8 +32,6 @@ body {
 <ul>
     <li> <a class="btn btn-primary" href="gestaoUsuario.php">Gestão de Usuário</a>  </li><br>
     <li> <a class="btn btn-primary" href="gestaoContatos.php">Gestão de Contatos</a> </li><br>
-    <li><a class="btn btn-primary" href="#">Gestão de Sub-Área</a> </li><br>
-    <li><a class="btn btn-primary"  href="#">Gestão de Conteúdos</a> </li><br><br>
     <a class="btn btn-primary" href="sair.php">Sair</a>
   </ul>
     

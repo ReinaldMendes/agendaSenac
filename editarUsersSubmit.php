@@ -8,7 +8,7 @@ if(!empty($_POST['id'])){
     $permissoes = $_POST['permissoes'];
     $id = $_POST['id'];
     if(!empty($email)){
-        $users->editar( $nome, $email, $senha, $permicoes, $id);
+        $users->editar( $nome, $email, $senha, $permissoes, $id);
     }
 
     header('Location: /agendaSenac/gestaoUsuario.php');

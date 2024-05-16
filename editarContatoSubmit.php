@@ -18,7 +18,7 @@ if(!empty($_POST['id'])){
         $contato->editar( $nome, $email, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $foto,$data_nasc, $id);
     }
 
-    header('Location: /agendaSenac');
+    header('Location: /agendaSenac/gestaoContatos.php');
 
 }
 

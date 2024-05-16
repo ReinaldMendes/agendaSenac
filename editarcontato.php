@@ -33,67 +33,67 @@ session_start();
     <input type ="hidden" name="id" value="<?php echo $info ['id']?>">
 
     <div class="form-group row">
-        <label for="nome" class="col-sm-2 col-form-label">Nome</label>
+        <label for="nome" class="col-sm-2 col-form-label"><h5>Nome: </h5></label>
         <div class="col-sm-10">
          <input type="text" class="form-control"  name="nome" value="<?php echo $info ['nome']?>"/>
         </div>
     </div>
     <div class="form-group row">
-        <label for="email" class="col-sm-2 col-form-label">Email</label>
+        <label for="email" class="col-sm-2 col-form-label"><h5>Email: </h5></label>
         <div class="col-sm-10">
          <input type="text" class="form-control" name="email" value="<?php echo $info ['email']?>"/>
         </div>
     </div>
     <div class="form-group row">
-        <label for="profissao" class="col-sm-2 col-form-label">Profissão</label>
+        <label for="profissao" class="col-sm-2 col-form-label"><h5>Profissão: </h5></label>
         <div class="col-sm-10">
          <input type="text" class="form-control" name="profissao" value="<?php echo $info ['profissao']?>"/>    
         </div>
     </div>
     <div class="form-group row">
-        <label for="telefone" class="col-sm-2 col-form-label">Telefone</label>
+        <label for="telefone" class="col-sm-2 col-form-label"><h5>Telefone: </h5></label>
         <div class="col-sm-10">
          <input type="text" class="form-control" name="telefone" value="<?php echo $info ['telefone']?>"/>
         </div>
     </div>
     <div class="form-group row">
-        <label for="numero" class="col-sm-2 col-form-label">Numero</label>
+        <label for="numero" class="col-sm-2 col-form-label"><h5>Numero: </h5></label>
         <div class="col-sm-10">
          <input type="text" class="form-control"  name="numero" value="<?php echo $info ['numero']?>"/>
         </div>
     </div>
     <div class="form-group row">
-        <label for="rua" class="col-sm-2 col-form-label">Rua</label>
+        <label for="rua" class="col-sm-2 col-form-label"><h5>Rua: </h5></label>
         <div class="col-sm-10">
          <input type="text"class="form-control" name="rua" value="<?php echo $info ['rua']?>"/>
         </div>
     </div>
     <div class="form-group row">
-        <label for="bairro" class="col-sm-2 col-form-label">Bairro</label>
+        <label for="bairro" class="col-sm-2 col-form-label"><h5>Bairro: </h5></label>
         <div class="col-sm-10">
          <input type="text" class="form-control" name="bairro" value="<?php echo $info ['bairro']?>"/>
         </div>
     </div>    
     <div class="form-group row">
-        <label for="cep" class="col-sm-2 col-form-label">Cep</label>
+        <label for="cep" class="col-sm-2 col-form-label"><h5>Cep: </h5></label>
         <div class="col-sm-10">
          <input type="text" class="form-control" name="cep" value="<?php echo $info ['cep']?>"/>
         </div>
     </div>      
     <div class="form-group row">
-        <label for="cidade" class="col-sm-2 col-form-label">Cidade</label>
+        <label for="cidade" class="col-sm-2 col-form-label"><h5>Cidade: </h5></label>
         <div class="col-sm-10">
          <input type="text" class="form-control" name="cidade" value="<?php echo $info ['cidade']?>"/>
         </div>
     </div>     
     <div class="form-group row">
-        <label for="foto" class="col-sm-2 col-form-label">Foto</label>
+        <label for="foto" class="col-sm-2 col-form-label"><h5>Foto: </h5></label>
         <div class="col-sm-10">
          <input type="text" class="form-control" name="foto" value="<?php echo $info ['foto']?>"/>
         </div>
     </div>      
     <div class="form-group row">
-        <label for="data_nasc" class="col-sm-2 col-form-label">Data Nasc</label>
+        <label for="data_nasc" class="col-sm-2 col-form-label"><h5> Data Nasc: </h5></label>
         <div class="col-sm-10">
          <input type="date" class="form-control" name="data_nasc" value="<?php echo $info ['data_nasc']?>"/>
         </div>

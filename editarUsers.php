@@ -56,5 +56,7 @@ session_start();
          <input type="text" class="form-control" name="permissoes" value="<?php echo $info ['permissoes']?>"/>
         </div>
     </div>
+    
+  <br> <br>
     <input type="submit" name="btCadastrar" class="btn btn-primary" value="SALVAR"/>
  </form>

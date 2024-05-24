@@ -28,14 +28,12 @@ body {
   <div class="jumbotron"> 
     <h1> SEJA BEM VINDO A PARTE ADMINISTRATIVA </h1>
     <h1> ESCOLHA UMA DAS OPÇÕES </h1>
-</div>
+  </div>
 <ul>
     <li> <a class="btn btn-primary" href="gestaoUsuario.php">Gestão de Usuário</a>  </li><br>
     <li> <a class="btn btn-primary" href="gestaoContatos.php">Gestão de Contatos</a> </li><br>
-    <a class="btn btn-primary" href="sair.php">Sair</a>
-  </ul>
-    
-  </div>
+</ul>
+    </div>
 </div>
 
 <?php

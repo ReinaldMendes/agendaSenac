@@ -23,7 +23,10 @@ $users->setUsers($_SESSION['logado']);
             <h1 class="jumbotron-heading">Usuarios</h1>
         </div>
     </section>
+  
+    
         <?php if ($users->temPermissoes('add')):?><a class="btn btn-primary" href="adicionarUsers.php">Adicionar </a> <?php endif;?> <br><br>
+        
         <a class="btn btn-primary" href="index.php">Voltar</a>
         <br><br>
             <div class="container">

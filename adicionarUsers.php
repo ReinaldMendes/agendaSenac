@@ -44,8 +44,8 @@
   <label class="form-check-label" for="inlineCheckbox2">Editar</label>
 </div>
 <div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" name="permissoes" value="del" disabled>
-  <label class="form-check-label" for="inlineCheckbox3">deletar (disabled)</label>
+  <input class="form-check-input" type="checkbox" name="permissoes" value="del" >
+  <label class="form-check-label" for="inlineCheckbox3">deletar</label>
 </div>
 <div class="form-check form-check-inline">
   <input class="form-check-input" type="checkbox" name="permissoes" value="super">
@@ -56,19 +56,3 @@
   <input type="submit" name="btCadastrar" class="btn btn-primary"  value="Adicionar"/>
 </form>
  
-<!-- <div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" name="permissoes" value="super">
-  <label class="form-check-label" for="inlineCheckbox1">1</label>
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" name="permissoes" value="add">
-  <label class="form-check-label" for="inlineCheckbox2">2</label>
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" name="permissoes" value="edit">
-  <label class="form-check-label" for="inlineCheckbox2">2</label>
-</div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" name="permissoes" value="del" disabled>
-  <label class="form-check-label" for="inlineCheckbox3">3 (disabled)</label>
-</div>  -->

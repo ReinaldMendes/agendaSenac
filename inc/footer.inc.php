@@ -1,6 +1,8 @@
 
+
+
 <div class="container">
-  <footer id="footer" class="py-3 mt-5 bg-dark text-white" clear>
+  <footer id="footer" class="py-5 mt-5 bg-dark text-white" clear>
     
   </footer>
 

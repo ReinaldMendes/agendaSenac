@@ -4,11 +4,16 @@ require 'classes/contatos.class.php';
 include 'inc/header.inc.php';
 
 $contato = new Contatos();
+
+
+
 if(!isset($_SESSION['logado'])){
     header("Location: login.php");
     exit;
 }
+
 ?>
+
 <style type="text/css">
     .row{
         background-color: #ddc;
@@ -21,7 +26,7 @@ if(!isset($_SESSION['logado'])){
             <h1 class="jumbotron-heading">Contatos</h1>
         </div>
     </section>
-        <a class="btn btn-primary" href="adicionarContato.php">Adicionar</a><br><br>
+     <a class="btn btn-primary" href="adicionarContato.php">Adicionar</a>  <br><br>
         <a class="btn btn-primary" href="index.php">Voltar</a>
         <br><br>
             <div class="container">
@@ -31,7 +36,7 @@ if(!isset($_SESSION['logado'])){
                         <table class="table table-bordered table-dark">
                             <thead class="thead-dark">
                                 <tr>
-                                    <th>ID</th>
+                                      <!--<th>ID </th>-->
                                     <th>NOME</th>
                                     <th>EMAIL</th>
                                     <th>TELEFONE</th>
@@ -52,7 +57,7 @@ if(!isset($_SESSION['logado'])){
                                 foreach ($lista as $item):
                                 ?>
                                 <tr>
-                                    <td><?php echo $item['id']; ?></td>
+                                     <!--<td><?php //echo $item['id']; ?> </td>-->
                                     <td><?php echo $item['nome']; ?></td>
                                     <td><?php echo $item['email']; ?></td>
                                     <td><?php echo $item['telefone']; ?></td>
@@ -65,9 +70,11 @@ if(!isset($_SESSION['logado'])){
                                     <td><?php echo $item['foto']; ?></td>
                                     <td><?php echo implode ("/",array_reverse (explode("-",$item['data_nasc'])));?></td>
                                     <td>
-                                        <a href="editarContato.php?id=<?php echo $item['id']; ?>" class="btn btn-warning">EDITAR</a>
-                                        <a href="excluirContato.php?id=<?php echo $item['id']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que quer excluir este contato?')">EXCLUIR</a>
+                                     <a href="editarContato.php?id=<?php echo $item['id']; ?>" class="btn btn-warning">EDITAR</a>
+                                    <a href="excluirContato.php?id=<?php echo $item['id']; ?>" class="btn btn-danger"
+                                     onclick="return confirm('Tem certeza que quer excluir este contato?')">EXCLUIR</a>
                                     </td>
+                                    
                                 </tr>
                                 <?php
                                 endforeach;

@@ -5,7 +5,7 @@ if(!empty($_POST['email'])){
     $nome = $_POST['nome'];
     $email = $_POST['email'];
     $senha = md5($_POST['senha']);
-    $permissoes = $_POST['permissoes'];
+    $permissoes = implode (',',$_POST['permissoes']);
 
 
     $users->adicionar($email, $nome, $senha, $permissoes);

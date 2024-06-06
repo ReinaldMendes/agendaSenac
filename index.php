@@ -2,8 +2,6 @@
 session_start(); 
 include 'inc/header.inc.php';
 
-
-
 if(!isset($_SESSION['logado'])){
     header("Location: login.php");
     exit;
@@ -15,18 +13,18 @@ if(!isset($_SESSION['logado'])){
 body {
     background-color: #ccc;
     
-  }
+}
 
-  h1 {
+h1 {
     text-align: center; /* Centraliza o conteúdo na horizontal */
-  }
+}
 </style>
 <h1>AGENDA SENAC</h1>
 
 <br><br>
 <div class="container-fluid">
   <div class="jumbotron"> 
-    <h1> SEJA BEM VINDO A PARTE ADMINISTRATIVA </h1>
+    <h1> SEJA BEM VINDO <?php echo $_SESSION['logado']; ?>, À PARTE ADMINISTRATIVA </h1>
     <h1> ESCOLHA UMA DAS OPÇÕES </h1>
   </div>
 <ul>

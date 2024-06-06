@@ -11,6 +11,9 @@ session_start();
             header("Location: /agendaSenac");
             exit;
         }
+
+        $arrayperm=explode(",", $info['permissoes']);
+
     }else{
         header("Location: /agendaSenac");
             exit;
@@ -51,10 +54,23 @@ session_start();
         </div>
     </div>
     <div class="form-group row">
-        <label for="permissoes" class="col-sm-2 col-form-label"><h5>Permissoes: </h5></label>
-        <div class="col-sm-10">
-         <input type="text" class="form-control" name="permissoes" value="<?php echo $info ['permissoes']?>"/>
-        </div>
+        <label for ="permissoes"> Permissões: </label><br>
+        <?php if($users->buscaPermissaoEdit($arrayperm)):?>
+        <input type="checkbox" name="pemissoes[]" id="EDIT" value="edit" checked/>
+        <label for="EDIT" ><h5>Editar: </h5></label>
+        <?php endif;?>
+        <?php if($users->buscaPermissaoAdd($arrayperm)):?>
+        <input type="checkbox" name="pemissoes[]" id="ADD" value="add" checked/>
+        <label for="ADD" ><h5>Adicionar: </h5></label>
+        <?php endif;?>
+        <?php if($users->buscaPermissaoDel($arrayperm)):?>
+        <input type="checkbox" name="pemissoes[]" id="DEL" value="del" checked/>
+        <label for="DEL"><h5>Deletar: </h5></label>
+        <?php endif;?>
+        <?php if($users->buscaPermissaoSuper($arrayperm)):?>
+        <input type="checkbox" name="pemissoes[]" id="SUPER" value="super" checked/>
+        <label for="SUPER" ><h5>Super: </h5></label>
+        <?php endif;?>
     </div>
     
   <br> <br>

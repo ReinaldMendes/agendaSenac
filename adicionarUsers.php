@@ -34,25 +34,21 @@
     </div>
   </div>
   <div class="form-group row">
-    <label for="permissoes" class="col-sm-2 col-form-label"><h5> Permissoes: </h5></label>
-  <div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" name="permissoes" value="add">
-  <label class="form-check-label" for="inlineCheckbox2">Add</label>
+<div class="checkbox">
+    <label><input type="checkbox" name="permissoes[]" value="add" /> Add </label>
 </div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" name="permissoes" value="edit">
-  <label class="form-check-label" for="inlineCheckbox2">Editar</label>
+<div class="checkbox">
+    <label><input type="checkbox" name="permissoes[]" value="editar" />Editar</label>
 </div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" name="permissoes" value="del" >
-  <label class="form-check-label" for="inlineCheckbox3">deletar</label>
+<div class="checkbox">
+    <label><input type="checkbox" name="permissoes[]" value="deletar" />Deletar</label>
 </div>
-<div class="form-check form-check-inline">
-  <input class="form-check-input" type="checkbox" name="permissoes" value="super">
-  <label class="form-check-label" for="inlineCheckbox2">Super</label>
+<div class="checkbox">
+    <label><input type="checkbox" name="permissoes[]" value="super" />Super</label>
 </div>
+
 </div>
   <br> <br>
   <input type="submit" name="btCadastrar" class="btn btn-primary"  value="Adicionar"/>
 </form>
- 
+

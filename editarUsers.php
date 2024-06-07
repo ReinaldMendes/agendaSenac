@@ -12,7 +12,7 @@ session_start();
             exit;
         }
 
-        $arrayperm=explode(",", $info['permissoes']);
+        $arrayperm = explode(",", $info['permissoes']);
 
     }else{
         header("Location: /agendaSenac");
@@ -54,23 +54,59 @@ session_start();
         </div>
     </div>
     <div class="form-group row">
-        <label for ="permissoes"> Permissões: </label><br>
-        <?php if($users->buscaPermissaoEdit($arrayperm)):?>
-        <input type="checkbox" name="pemissoes[]" id="EDIT" value="edit" checked/>
-        <label for="EDIT" ><h5>Editar: </h5></label>
-        <?php endif;?>
+        <label for ="permissoes" class="col-sm-2 col-form-label"><h5> Permissões: </h5> </label><br>
+        <div class="checkbox">
         <?php if($users->buscaPermissaoAdd($arrayperm)):?>
-        <input type="checkbox" name="pemissoes[]" id="ADD" value="add" checked/>
-        <label for="ADD" ><h5>Adicionar: </h5></label>
+        <input type="checkbox" name="pemissoes[]" id="add" value="add" checked/>
+        <label for="add" ><h5>Adicionar: </h5></label>
         <?php endif;?>
+        </div>
+        <div class="checkbox">
+        <?php if(empty($users->buscaPermissaoAdd($arrayperm))):?>
+        <input type="checkbox" name="pemissoes[]" id="add" value="add"/>
+        <label for="add" ><h5>Adicionar: </h5></label>
+        <?php endif;?>        
+        </div>
+        <div class="checkbox">
+        <?php if($users->buscaPermissaoEdit($arrayperm)):?>
+        <input type="checkbox" name="pemissoes[]" id="edit" value="edit" checked/>
+        <label for="edit" ><h5>Editar: </h5></label>
+        <?php endif;?>
+        </div>
+        <div class="checkbox">
+        <?php if(empty($users->buscaPermissaoEdit($arrayperm))):?>
+        <input type="checkbox" name="pemissoes[]" id="edit" value="edit"/>
+        <label for="edit" ><h5>Editar: </h5></label>
+        <?php endif;?>
+        <div>
+        
+        
+        <div class="checkbox">
         <?php if($users->buscaPermissaoDel($arrayperm)):?>
-        <input type="checkbox" name="pemissoes[]" id="DEL" value="del" checked/>
-        <label for="DEL"><h5>Deletar: </h5></label>
+        <input type="checkbox" name="pemissoes[]" id="del" value="del" checked/>
+        <label for="del"><h5>Deletar: </h5></label>
         <?php endif;?>
+        </div>
+        <div class="checkbox">
+        <?php if(empty($users->buscaPermissaoDel($arrayperm))):?>
+        <input type="checkbox" name="pemissoes[]" id="del" value="del"/>
+        <label for="del"><h5>Deletar: </h5></label>
+        <?php endif;?>
+        </div>
+       
+        <div class="checkbox">
         <?php if($users->buscaPermissaoSuper($arrayperm)):?>
-        <input type="checkbox" name="pemissoes[]" id="SUPER" value="super" checked/>
-        <label for="SUPER" ><h5>Super: </h5></label>
+        <input type="checkbox" name="pemissoes[]" id="super" value="super" checked/>
+        <label for="super" ><h5>Super: </h5></label>
         <?php endif;?>
+        </div>
+        <div class="checkbox">
+        <?php if(empty($users->buscaPermissaoSuper($arrayperm))):?>
+        <input type="checkbox" name="pemissoes[]" id="super" value="super"/>
+        <label for="super" ><h5>Super: </h5></label>
+        <?php endif;?>
+        </div>
+       
     </div>
     
   <br> <br>

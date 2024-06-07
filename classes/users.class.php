@@ -156,28 +156,28 @@ class Users {
     }
     public function buscaPermissaoAdd($arrayperm){
         foreach($arrayperm as $item){
-            if($item ==  "ADD"){
+            if($item ==  "add"){
                 return TRUE;
             }
         }
     }
     public function buscaPermissaoEdit($arrayperm){
         foreach($arrayperm as $item){
-            if($item ==  "EDIT"){
+            if($item ==  "edit"){
                 return TRUE;
             }
         }
     }
     public function buscaPermissaoDel($arrayperm){
         foreach($arrayperm as $item){
-            if($item ==  "DEL"){
+            if($item ==  "del"){
                 return TRUE;
             }
         }
     }
     public function buscaPermissaoSuper($arrayperm){
         foreach($arrayperm as $item){
-            if($item == "SUPER"){
+            if($item == "super"){
                 return TRUE;
             }
         }

@@ -35,16 +35,16 @@
   </div>
   <div class="form-group row">
 <div class="checkbox">
-    <label><input type="checkbox" name="permissoes[]" id="ADD" value="add" /> Add </label>
+    <label><input type="checkbox" name="permissoes[]" id="add" value="add" /> Add </label>
 </div>
 <div class="checkbox">
-    <label><input type="checkbox" name="permissoes[]" id="EDIT" value="edit" />Editar</label>
+    <label><input type="checkbox" name="permissoes[]" id="add" value="edit" />Editar</label>
 </div>
 <div class="checkbox">
-    <label><input type="checkbox" name="permissoes[]" id="DEL" value="del" />Deletar</label>
+    <label><input type="checkbox" name="permissoes[]" id="del" value="del" />Deletar</label>
 </div>
 <div class="checkbox">
-    <label><input type="checkbox" name="permissoes[]" id="SUPER" value="super" />Super</label>
+    <label><input type="checkbox" name="permissoes[]" id="super" value="super" />Super</label>
 </div>
 
 </div>

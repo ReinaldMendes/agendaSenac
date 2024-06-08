@@ -1,18 +1,18 @@
 <?php
 session_start(); 
-include 'inc/header.inc.php';
-
+require_once 'classes/users.class.php';
+$users = new Users();
 if(!isset($_SESSION['logado'])){
     header("Location: login.php");
     exit;
 }
 
-//$users->setUsers($_SESSION['logado']);
+$users->setUsers($_SESSION['logado']);
+include 'inc/header.inc.php';
 ?>
 <style>
 body {
     background-color: #ccc;
-    
 }
 
 h1 {
@@ -28,8 +28,8 @@ h1 {
     <h1> ESCOLHA UMA DAS OPÇÕES </h1>
   </div>
 <ul>
-    <li> <a class="btn btn-primary" href="gestaoUsuario.php">Gestão de Usuário</a>  </li><br>
-    <li> <a class="btn btn-primary" href="gestaoContatos.php">Gestão de Contatos</a> </li><br>
+    <li><?php if ($users->temPermissoes('super')):?> <a class="btn btn-primary" href="gestaoUsuario.php">Gestão de Usuário</a> <?php endif;?> </li><br>
+     <li><?php if ($users->temPermissoes('add')):?> <a class="btn btn-primary" href="gestaoContatos.php">Gestão de Contatos</a> <?php endif;?></li><br>
 </ul>
     </div>
 </div>

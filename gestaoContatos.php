@@ -46,7 +46,7 @@ if(!isset($_SESSION['logado'])){
                                     <th>BAIRRO</th>
                                     <th>CEP</th>
                                     <th>PROFISSÃO</th>
-                                    <th>FOTO</th>
+                                    <!--<th>FOTO</th>-->
                                     <th>DATA NASC</th>
                                     <th>AÇÕES</th>
                                 </tr>
@@ -67,7 +67,7 @@ if(!isset($_SESSION['logado'])){
                                     <td><?php echo $item['bairro']; ?></td>
                                     <td><?php echo $item['cep']; ?></td>
                                     <td><?php echo $item['profissao']; ?></td>
-                                    <td><?php echo $item['foto']; ?></td>
+                                   <!-- <td><?php echo $item['foto']; ?></td>-->
                                     <td><?php echo implode ("/",array_reverse (explode("-",$item['data_nasc'])));?></td>
                                     <td>
                                      <a href="editarContato.php?id=<?php echo $item['id']; ?>" class="btn btn-warning">EDITAR</a>

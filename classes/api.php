@@ -2,7 +2,7 @@
 header('Content-Type: application/json');
 
 $host = 'localhost'; // endereço do servidor do banco de dados
-$db = 'agenda'; // nome do banco de dados
+$db = 'agendacontatos'; // nome do banco de dados
 $user = 'root'; // nome de usuário do banco de dados
 $pass = ''; // senha do banco de dados
 

@@ -1,9 +1,7 @@
 <?php
 session_start();
-require 'classes/client.php';
-include 'inc/header.inc.php';
 
-// Função para fazer requisições GET usando cURL
+include 'inc/header.inc.php';
 
 // Função para fazer requisições GET usando cURL
 function api_get($endpoint) {
@@ -42,17 +40,15 @@ function api_get($endpoint) {
     
     return $decoded;
 }
-
-
-
-
 ?>
+
 <style type="text/css">
     .row {
         background-color: #ddc;
         padding: 10px;
     }
 </style>
+
 <main>
     <section class="jumbotron text-black-50 text-center">
         <div class="container">
@@ -60,15 +56,13 @@ function api_get($endpoint) {
         </div>
     </section>
 
-    
-        <a class="btn btn-primary" href="adicionarUsers.php">Adicionar</a>
-    
-    <br><br>
-    <a class="btn btn-primary" href="index.php">Voltar</a>
-    <br><br>
     <div class="container">
         <div class="row align-items-center justify-content-center">
             <div class="col-12">
+                <a class="btn btn-primary" href="adicionarUsers.php">Adicionar</a>
+                <br><br>
+                <a class="btn btn-primary" href="index.php">Voltar</a>
+                <br><br>
                 <div class="table-responsive">
                     <table class="table table-bordered table-dark">
                         <thead class="thead-dark">
@@ -83,6 +77,12 @@ function api_get($endpoint) {
                         <tbody>
                             <?php
                             // Obter lista de usuários da API
+                            foreach ($decoded as $x) {
+                                echo "$x[nome] <br>";
+                                echo "$x[email] <br>";
+                                echo "$x[senha] <br>";
+                                echo "$x[permissoes] <br>";
+                            }
                             $api_response = api_get('/users');
                             if (isset($api_response['success']) && $api_response['success'] && isset($api_response['data'])) {
                                 $lista = $api_response['data'];
@@ -94,12 +94,8 @@ function api_get($endpoint) {
                                     <td><?php echo $item['email']; ?></td>
                                     <td><?php echo $item['permissoes']; ?></td>
                                     <td>
-                                       
-                                            <a href="editarUsers.php?id=" class="btn btn-warning">EDITAR</a>
-                                        
-                                        
-                                            <a href="excluirUsers.php?id=<?php echo $item['id']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que quer excluir este usuário?')">EXCLUIR</a>
-                                     
+                                        <a href="editarUsers.php?id=<?php echo $item['id']; ?>" class="btn btn-warning">EDITAR</a>
+                                        <a href="excluirUsers.php?id=<?php echo $item['id']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que quer excluir este usuário?')">EXCLUIR</a>
                                     </td>
                                 </tr>
                             <?php

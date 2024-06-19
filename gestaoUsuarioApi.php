@@ -23,14 +23,12 @@ function api_get($endpoint) {
     $http_code = curl_getinfo($curl, CURLINFO_HTTP_CODE);
     if ($http_code >= 400) {
         echo "Erro HTTP $http_code ao acessar a API.";
-        // Exibir resposta da API para debug
         echo "Resposta da API: " . $response;
         return false;
     }
     
     curl_close($curl);
     
-    // Verificar se a resposta é um JSON válido
     $decoded = json_decode($response, true);
     if (json_last_error() !== JSON_ERROR_NONE) {
         echo "Erro ao decodificar JSON: " . json_last_error_msg();
@@ -76,17 +74,9 @@ function api_get($endpoint) {
                         </thead>
                         <tbody>
                             <?php
-                            // Obter lista de usuários da API
-                            foreach ($decoded as $x) {
-                                echo "$x[nome] <br>";
-                                echo "$x[email] <br>";
-                                echo "$x[senha] <br>";
-                                echo "$x[permissoes] <br>";
-                            }
                             $api_response = api_get('/users');
-                            if (isset($api_response['success']) && $api_response['success'] && isset($api_response['data'])) {
-                                $lista = $api_response['data'];
-                                foreach ($lista as $item):
+                            if ($api_response !== false) {
+                                foreach ($api_response as $item):
                             ?>
                                 <tr>
                                     <td><?php echo $item['id']; ?></td>

@@ -69,7 +69,7 @@ if(!isset($_SESSION['logado'])){
                                     <td><?php echo $item['profissao']; ?></td>
                                    <!-- <td><?php echo $item['foto']; ?></td>-->
                                     <td><?php echo implode ("/",array_reverse (explode("-",$item['data_nasc'])));?></td>
-                                    <td>
+                                    <td>                                       
                                      <a href="editarContato.php?id=<?php echo $item['id']; ?>" class="btn btn-warning">EDITAR</a>
                                     <a href="excluirContato.php?id=<?php echo $item['id']; ?>" class="btn btn-danger"
                                      onclick="return confirm('Tem certeza que quer excluir este contato?')">EXCLUIR</a>

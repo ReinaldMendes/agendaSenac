@@ -3,7 +3,7 @@
 $curl = curl_init();
 
 curl_setopt_array($curl, array(
-    CURLOPT_URL => 'http://localhost/agendasenaccopia/classes/api.php',
+    CURLOPT_URL => 'http://localhost/agendasenaccopia/classes/api.php/users',
     CURLOPT_RETURNTRANSFER => true,
     CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
     CURLOPT_CUSTOMREQUEST => 'GET',
@@ -13,7 +13,7 @@ $output = curl_exec($curl);
 
 curl_close($curl);
 
-$decoded = json_decode($output);
+$decoded = json_decode($output, true); // Mudei para true para retornar um array associativo
 
 foreach ($decoded as $x) {
     echo "$x[nome] <br>";
@@ -21,3 +21,4 @@ foreach ($decoded as $x) {
     echo "$x[senha] <br>";
     echo "$x[permissoes] <br>";
 }
+?>

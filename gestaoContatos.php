@@ -73,6 +73,7 @@ if(!isset($_SESSION['logado'])){
                                      <a href="editarContato.php?id=<?php echo $item['id']; ?>" class="btn btn-warning">EDITAR</a>
                                     <a href="excluirContato.php?id=<?php echo $item['id']; ?>" class="btn btn-danger"
                                      onclick="return confirm('Tem certeza que quer excluir este contato?')">EXCLUIR</a>
+                                     <a href="verContato.php?id=<?php echo $item['id']; ?>" class="btn btn-info">VER</a>
                                     </td>
                                     
                                 </tr>

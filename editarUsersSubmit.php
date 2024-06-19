@@ -16,7 +16,7 @@ if (!empty($_POST['id'])) {
     }
 
     // Se a senha não estiver vazia, criptografe-a usando MD5
-    if (!empty($senha)) {
+    if (empty($senha)) {
         $senha = md5($senha);
     } else {
         // Caso a senha esteja vazia, mantenha a senha existente no banco de dados

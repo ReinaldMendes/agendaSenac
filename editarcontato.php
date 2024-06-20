@@ -86,20 +86,25 @@ session_start();
          <input type="text" class="form-control" name="cidade" value="<?php echo $info ['cidade']?>"/>
         </div>
     </div>     
-    <div class="form-group row">
-        <label for="foto" class="col-sm-2 col-form-label"><h5>Foto: </h5></label>
-        <div class="col-sm-10">
-         <input type="text" class="form-control" name="foto" value="<?php echo $info ['foto']?>"/>
-        </div>
-    </div>      
+     
     <div class="form-group row">
         <label for="data_nasc" class="col-sm-2 col-form-label"><h5> Data Nasc: </h5></label>
         <div class="col-sm-10">
          <input type="date" class="form-control" name="data_nasc" value="<?php echo $info ['data_nasc']?>"/>
         </div>
     </div>
+    <div class="grupo">
+        <div class= "cabecalho">Foto Contato</div>
+        <div class = "corpo">
+            <?php foreach ($info ['foto'] as $fotos):?>
+                <div class="foto_item">
+                    <img src ="img/contatos/<?php echo $fotos['url'];?>"/>
+                    <a href = "excluir_foto.php?id=<?php $fotos['id'];?>">Excluir Imagem</a>
+            </div>
+          <?php endforeach;?>     
+        </div>
+    </div> 
     <br> <br>        
-  
     <input type="submit" name="btCadastrar" class="btn btn-primary" value="SALVAR"/>
  </form>
  

@@ -13,13 +13,28 @@ if(!empty($_POST['id'])){
     $profissao = $_POST['profissao'];
     $foto = $_POST['foto'];
     $data_nasc= $_POST['data_nasc'];
-    $id = $_POST['id'];
+    
+    if(isset($_FILES['foto'])){
+        $foto = $_FILES['foto'];
+    }else {
+        $foto = array();
+    }
+
     if(!empty($email)){
-        $contato->editar( $nome, $email, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $foto,$data_nasc, $id);
+        $contato->editar( $nome, $email, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $foto,$data_nasc,$_GET['id']);
     }
 
     header('Location: /agendaSenac/gestaoContatos.php');
 
+}
+if(isset($_GET['id']) && !empty ($_GET['id'])){
+    $info = $contato->getContato($_GET['id']);
+
+}else {
+    ?>
+    <script type ="text/javascript">window.location.href="index.php";</script>
+    <?php
+    exit;
 }
 
 ?>

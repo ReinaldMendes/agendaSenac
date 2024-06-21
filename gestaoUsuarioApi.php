@@ -75,8 +75,8 @@ function api_get($endpoint) {
                         <tbody>
                             <?php
                             $api_response = api_get('/users');
-                            if ($api_response !== false) {
-                                foreach ($api_response as $item):
+                            if ($api_response !== false && isset($api_response['data']) && is_array($api_response['data'])) {
+                                foreach ($api_response['data'] as $item):
                             ?>
                                 <tr>
                                     <td><?php echo $item['id']; ?></td>
@@ -84,8 +84,8 @@ function api_get($endpoint) {
                                     <td><?php echo $item['email']; ?></td>
                                     <td><?php echo $item['permissoes']; ?></td>
                                     <td>
-                                        <a href="editarUsers.php?id=<?php echo $item['id']; ?>" class="btn btn-warning">EDITAR</a>
-                                        <a href="excluirUsers.php?id=<?php echo $item['id']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que quer excluir este usuário?')">EXCLUIR</a>
+                                        <a href="editarUsuarioApi.php?id=<?php echo $item['id']; ?>" class="btn btn-warning">EDITAR</a>
+                                        <a href="excluirUsuarioApi.php?id=<?php echo $item['id']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que quer excluir este usuário?')">EXCLUIR</a>
                                     </td>
                                 </tr>
                             <?php

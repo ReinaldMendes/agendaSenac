@@ -20,6 +20,40 @@ session_start();
         header("Location: login.php");
         exit;
     }
+    if(!empty($_POST['id'])){
+        $nome = $_POST['nome'];
+        $email = $_POST['email'];
+        $telefone = $_POST['telefone'];
+        $cidade = $_POST['cidade'];
+        $rua = $_POST['rua'];
+        $numero = $_POST['numero'];
+        $bairro = $_POST['bairro'];
+        $cep= $_POST['cep'];
+        $profissao = $_POST['profissao'];
+        $data_nasc= $_POST['data_nasc'];
+        
+        if(isset($_FILES['foto'])){
+            $foto = $_FILES['foto'];
+        }else {
+            $foto = array();
+        }
+    
+        if(!empty($email)){
+            $contato->editar( $nome, $email, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao,$data_nasc,$foto,$_GET['id']);
+        }
+    
+        header('Location: /agendaSenac/gestaoContatos.php');
+    
+    }
+    if(isset($_GET['id']) && !empty ($_GET['id'])){
+        $info = $contato->getContato($_GET['id']);
+    
+    }else {
+        ?>
+        <script type ="text/javascript">window.location.href="index.php";</script>
+        <?php
+        exit;
+    }
 ?>
 
 
@@ -29,7 +63,7 @@ session_start();
         </div>
 <br> <br>
 
- <form method="POST" action="editarContatoSubmit.php">
+ <form method="POST" enctype="multipart/form-data">
     <input type ="hidden" name="id" value="<?php echo $info ['id']?>">
 
     <div class="form-group row">
@@ -93,8 +127,10 @@ session_start();
          <input type="date" class="form-control" name="data_nasc" value="<?php echo $info ['data_nasc']?>"/>
         </div>
     </div>
+    foto: <br>
+    <input type="file" name="foto[]" multiple/><br>
     <div class="grupo">
-        <div class= "cabecalho">Foto Contato</div>
+        <div class= "col-sm-2 col-form-label"><h5>Foto Contato: </h5></div>
         <div class = "corpo">
             <?php foreach ($info ['foto'] as $fotos):?>
                 <div class="foto_item">

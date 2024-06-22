@@ -102,7 +102,25 @@ class Contatos {//idPrestador	ServicosOferecidos	areaAtuacao	horarioTrabalho	mei
             echo"ERRO";
         }
     }
-    public function editar( $nome,$email, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $foto, $data_nasc, $id){
+    public function getContato($id){
+        $array = array();
+        $sql = $this -> con->conectar()->prepare("SELECT * FROM contatos WHERE id = :id");
+        $sql->bindValue(":id", $id);
+        $sql->execute();
+
+        if($sql-> rowCount()>0){
+            $array = $sql->fetch();
+            $array['foto'] = array();
+            $sql = $this->con->conectar()->prepare("SELECT id, url FROM contato_foto WHERE id_contato = :id_contato");
+            $sql-> bindValue("id_contato", $id);
+            $sql-> execute();
+            if($sql->rowCount()>0){
+                $array['foto']= $sql ->fetchAll();
+            }
+        }
+        return $array;
+    }
+    public function editar( $nome,$email, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $data_nasc,$foto, $id){
         $emailExistente = $this->existeEmail($email);
         if(count ($emailExistente )> 0 && $emailExistente['id']!=$id){
             return FALSE;
@@ -111,7 +129,7 @@ class Contatos {//idPrestador	ServicosOferecidos	areaAtuacao	horarioTrabalho	mei
                 $this->data_nasc=implode("-",(explode("/",$data_nasc)));
                 $sql = $this->con->conectar()->prepare("UPDATE contatos SET nome = :nome, email= :email, telefone = :telefone, 
                 cidade = :cidade, rua = :rua, numero= :numero, bairro = :bairro, cep = :cep,
-                profissao = :profissao, foto = :foto, data_nasc = :data_nasc WHERE id = :id ");
+                profissao = :profissao, data_nasc = :data_nasc WHERE id = :id ");
                 $sql->bindValue(':nome', $nome); 
                 $sql->bindValue(':email', $email); 
                 $sql->bindValue(':telefone', $telefone); 
@@ -121,15 +139,14 @@ class Contatos {//idPrestador	ServicosOferecidos	areaAtuacao	horarioTrabalho	mei
                 $sql->bindValue(':bairro', $bairro); 
                 $sql->bindValue(':cep', $cep); 
                 $sql->bindValue(':profissao', $profissao); 
-                $sql->bindValue(':foto', $foto); 
                 $sql->bindValue(':data_nasc', $data_nasc); 
                 $sql->bindValue(':id', $id); 
                 $sql->execute();
                 //inserir a imagem
                 if(count($foto)>0){
-                    for($q=0;$q<count($foto['temp_name']);$q++){
+                    for($q=0;$q<count($foto['tmp_name']);$q++){
                         $tipo = $foto ['type'][$q];
-                        if(in_array($tipo, array ('image/jpeg','image/png'))){
+                        if(in_array($tipo, array('image/jpeg','image/png'))){
                             $tmpname = md5(time().rand(0,9999)).'.jpg';
                             move_uploaded_file($foto['tmp_name'][$q], 'img/contatos/'.$tmpname);
                             list($width_orig, $height_orig)=getimagesize('img/contatos/'.$tmpname);
@@ -144,14 +161,14 @@ class Contatos {//idPrestador	ServicosOferecidos	areaAtuacao	horarioTrabalho	mei
                             }
                             $img = imagecreatetruecolor($width, $height);
                             if($tipo == 'image/jpeg'){
-                                $origi = imagecreatefromjpeg('img/contatos'.$tmpname);
+                                $origi = imagecreatefromjpeg('img/contatos/'.$tmpname);
                             }elseif($tipo == 'image/png'){
-                                $origi = imagecreatefrompng('img/contatos'.$tmpname);
+                                $origi = imagecreatefrompng('img/contatos/'.$tmpname);
                         }
                         imagecopyresampled($img,$origi,0,0,0,0,$width,$height,$width_orig,$height_orig);
                         //imagem salva no servidor
                         imagejpeg($img, 'img/contatos/'.$tmpname, 80);
-                        $sql = this->con->conectar()->prepare("INSERT INTO contato_foto SET id_contato = :id_contato, url = :url");
+                        $sql = $this->con->conectar()->prepare("INSERT INTO contato_foto SET id_contato = :id_contato, url = :url");
                         $sql->bindValue(":id_contato", $id);
                         $sql->bindValue(":url",$tmpname);
                         $sql->execute();

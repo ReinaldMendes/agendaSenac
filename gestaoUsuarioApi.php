@@ -85,11 +85,9 @@ function api_get($endpoint) {
                                     <td><?php echo $item['permissoes']; ?></td>
                                     <td>
                                         <a href="editarUsuarioApi.php?id=<?php echo $item['id']; ?>" class="btn btn-warning">EDITAR</a>
-<<<<<<< HEAD
+
                                         <a href="excluirUsers.php?id=<?php echo $item['id']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que quer excluir este usuário?')">EXCLUIR</a>
-=======
-                                        <a href="excluirUsuarioApi.php?id=<?php echo $item['id']; ?>" class="btn btn-danger" onclick="return confirm('Tem certeza que quer excluir este usuário?')">EXCLUIR</a>
->>>>>>> af92726f3b81e834fc6431e9fa3c213cea0b148d
+
                                     </td>
                                 </tr>
                             <?php

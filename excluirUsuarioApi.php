@@ -22,6 +22,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['id'])) {
         $decoded = json_decode($response, true);
         if (isset($decoded['success']) && $decoded['success']) {
             echo "Usuário excluído com sucesso.";
+            // Redirecionar para a página GestaoUsuarioapi após a exclusão
+            header("Location: gestaoUsuarioApi.php");
+            exit;
         } else {
             echo "Erro ao excluir usuário: " . $decoded['message'];
         }

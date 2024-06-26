@@ -35,7 +35,7 @@ class Contatos {//idPrestador	ServicosOferecidos	areaAtuacao	horarioTrabalho	mei
         }
         return $array;
     }  
-    public function adicionar($email, $nome, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao,$foto, $data_nasc){
+    public function adicionar($email, $nome, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $data_nasc){
         $emailExistente = $this->existeEmail($email);
         if(count($emailExistente) == 0){
             try{
@@ -48,11 +48,10 @@ class Contatos {//idPrestador	ServicosOferecidos	areaAtuacao	horarioTrabalho	mei
                 $this->bairro = $bairro;
                 $this->cep = $cep;
                 $this->profissao = $profissao;
-                $this->foto = $foto;
                 $this->data_nasc = $data_nasc;
 
-                $sql = $this->con->conectar()->prepare("INSERT INTO contatos(nome, email, telefone, cidade, rua, numero, bairro, cep, profissao, foto, data_nasc)
-                    VALUES(:nome, :email, :telefone, :cidade, :rua, :numero, :bairro, :cep, :profissao, :foto, :data_nasc)");
+                $sql = $this->con->conectar()->prepare("INSERT INTO contatos(nome, email, telefone, cidade, rua, numero, bairro, cep, profissao, data_nasc)
+                    VALUES(:nome, :email, :telefone, :cidade, :rua, :numero, :bairro, :cep, :profissao, :data_nasc)");
                     $sql->bindParam(":nome", $this->nome, PDO::PARAM_STR);
                     $sql->bindParam(":email", $this->email, PDO::PARAM_STR);
                     $sql->bindParam(":telefone", $this->telefone, PDO::PARAM_STR);
@@ -62,7 +61,6 @@ class Contatos {//idPrestador	ServicosOferecidos	areaAtuacao	horarioTrabalho	mei
                     $sql->bindParam(":bairro", $this->bairro, PDO::PARAM_STR);
                     $sql->bindParam(":cep", $this->cep, PDO::PARAM_STR);
                     $sql->bindParam(":profissao", $this->profissao, PDO::PARAM_STR);
-                    $sql->bindParam(":foto", $this->foto, PDO::PARAM_STR);
                     $sql->bindParam(":data_nasc", $this->data_nasc, PDO::PARAM_STR);
                     $sql->execute();
                 return TRUE;
@@ -117,6 +115,15 @@ class Contatos {//idPrestador	ServicosOferecidos	areaAtuacao	horarioTrabalho	mei
             if($sql->rowCount()>0){
                 $array['foto']= $sql ->fetchAll();
             }
+        }
+        return $array;
+    }
+    public function getFoto(){
+        $array = array();
+        $sql= $this->con->conectar()->prepare("SELECT *, (select contato_foto.url from contato_foto where contato_foto.id_contato = contatos.id limit 1) as url FROM contatos");
+        $sql->execute();
+        if($sql->rowCount()>0){
+            $array = $sql->fetchAll();
         }
         return $array;
     }

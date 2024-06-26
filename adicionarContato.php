@@ -69,12 +69,6 @@ if(!isset($_SESSION['logado'])){
     </div>
   </div>
   <div class="form-group row">
-    <label for="foto" class="col-sm-2 col-form-label"><h5>Foto: </h5></label>
-    <div class="col-sm-10">
-      <input type="text" class="form-control" name="foto" placeholder="Salve sua foto">
-    </div>
-  </div>
-  <div class="form-group row">
     <label for="data_nasc" class="col-sm-2 col-form-label"><h5>Data Nasc: </h5></label>
     <div class="col-sm-10">
       <input type="date" class="form-control" name="data_nasc" placeholder="Data Nasc">

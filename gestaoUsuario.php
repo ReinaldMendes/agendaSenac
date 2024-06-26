@@ -23,7 +23,7 @@ $users->setUsers($_SESSION['logado']);
         </div>
     </section>
 
-    <?php if ($users->temPermissoes('add')): ?>
+    <?php if ($users->temPermissoes('add') || $users->temPermissoes('super')): ?>
         <a class="btn btn-primary" href="adicionarUsers.php">Adicionar</a>
     <?php endif; ?> 
     <br><br>

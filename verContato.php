@@ -4,6 +4,7 @@ require 'classes/contatos.class.php';
 include 'inc/header.inc.php';
 
 $contato = new Contatos();
+
 if (!isset($_SESSION['logado'])) {
     header("Location: login.php");
     exit;
@@ -11,7 +12,7 @@ if (!isset($_SESSION['logado'])) {
 
 if (!empty($_GET['id'])) {
     $id = $_GET['id'];
-    $info = $contato->buscar($id);
+    $info = $contato->getContato($id);
     if (empty($info['email'])) {
         header("Location: /agendaSenac");
         exit;
@@ -22,9 +23,11 @@ if (!empty($_GET['id'])) {
 }
 ?>
 
+
 <div class="container">
     <h1 class="jumbotron-heading">Detalhes de Contato</h1>
     <table class="table table-bordered table-light">
+        
         <tr>
             <th>ID</th>
             <td><?php echo $info['id']; ?></td>
@@ -62,13 +65,19 @@ if (!empty($_GET['id'])) {
             <th>Profissao</th>
             <td><?php echo $info['profissao']; ?></td>
         </tr>
-        <tr>
-            <th>Foto</th>
-            <td><?php echo $info['foto']; ?></td>
-        </tr>
+       
         <tr>
             <th>Data Nascimento</th>
             <td><?php echo $info['data_nasc']; ?></td>
+        </tr>
+        <tr>
+            
+        <?php if(!empty($item['url'])):?>
+           
+            <img src = "img/contatos/<?php echo $item['url'];?>" height="50px" border="0"/>
+            <?php else: ?>    
+             <img src = "img/default.png"  height="150px" border="0"/>
+            <?php endif; ?>   
         </tr>
     </table>
     <a class="btn btn-primary" href="gestaoContatos.php">Voltar</a>

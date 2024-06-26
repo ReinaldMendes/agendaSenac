@@ -11,10 +11,9 @@ if(!empty($_POST['email'])){
     $bairro = $_POST['bairro'];
     $cep= $_POST['cep'];
     $profissao = $_POST['profissao'];
-    $foto = $_POST['foto'];
     $data_nasc = $_POST['data_nasc'];
 
-    $contato->adicionar($email, $nome, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $foto,$data_nasc);
+    $contato->adicionar($email, $nome, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $data_nasc);
     header('Location: /agendaSenac/gestaoContatos.php');
 
 }else{

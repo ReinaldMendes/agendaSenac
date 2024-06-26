@@ -5,7 +5,7 @@ include 'inc/header.inc.php';
 
 // Função para fazer requisições GET usando cURL
 function api_get($endpoint) {
-    $url = 'http://localhost/agendasenaccopia/classes/api.php' . $endpoint;
+    $url = 'http://localhost/agendasenac/classes/rest_basico.php' . $endpoint;
     $curl = curl_init();
     curl_setopt_array($curl, array(
         CURLOPT_URL => $url,

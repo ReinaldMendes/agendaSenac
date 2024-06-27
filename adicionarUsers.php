@@ -1,4 +1,4 @@
- <?php
+<?php
  session_start(); 
  require_once 'inc/header.inc.php';
  if(!isset($_SESSION['logado'])){
@@ -51,4 +51,3 @@
   <br> <br>
   <input type="submit" name="btCadastrar" class="btn btn-primary"  value="Adicionar"/>
 </form>
-

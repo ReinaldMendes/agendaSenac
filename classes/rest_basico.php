@@ -2,27 +2,41 @@
 
 require 'database.php';
 
-// Rota para buscar todos os contatos
+header('Content-Type: application/json');
+
+// Função para enviar resposta JSON
+function sendResponse($data, $statusCode = 200) {
+    http_response_code($statusCode);
+    echo json_encode($data);
+    exit;
+}
+
+// Função para validar campos obrigatórios
+function validateRequiredFields($data, $fields) {
+    foreach ($fields as $field) {
+        if (empty($data[$field])) {
+            sendResponse(['error' => "O campo $field é obrigatório"], 400);
+        }
+    }
+}
+
+// Rota para buscar todos os contatos ou um contato específico
 if ($_SERVER['REQUEST_METHOD'] === 'GET') {
-    if (empty($_GET)) {
-        try {
+    $id = isset($_GET['id']) ? $_GET['id'] : null;
+
+    try {
+        if ($id) {
+            $stmt = $conn->prepare('SELECT * FROM contatos WHERE id = :id');
+            $stmt->bindParam(':id', $id, PDO::PARAM_INT);
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        } else {
             $stmt = $conn->query('SELECT * FROM contatos');
             $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            header('Content-Type: application/json');
-            echo json_encode($result);
-        } catch (PDOException $e) {
-            echo json_encode(['error' => $e->getMessage()]);
         }
-    } else {
-        $data = json_decode(file_get_contents('php://input'), true);
-        try {
-            $stmt = $conn->query('SELECT * FROM contatos WHERE id=' . $data['id']);
-            $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
-            header('Content-Type: application/json');
-            echo json_encode($result);
-        } catch (PDOException $e) {
-            echo json_encode(['error' => $e->getMessage()]);
-        }
+        sendResponse($result);
+    } catch (PDOException $e) {
+        sendResponse(['error' => $e->getMessage()], 500);
     }
 }
 
@@ -30,45 +44,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'GET') {
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $data = json_decode(file_get_contents('php://input'), true);
 
-    $requiredFields = ['nome', 'email', 'telefone', 'cidade', 'rua', 'numero', 'bairro', 'cep', 'profissao', 'datanasc', 'foto'];
-    foreach ($requiredFields as $field) {
-        if (empty($data[$field])) {
-            echo json_encode(['error' => "O campo $field é obrigatório"]);
-            exit;
-        }
-    }
-
-    $nome = $data['nome'];
-    $telefone = $data['telefone'];
-    $email = $data['email'];
-    $cidade = $data['cidade'];
-    $rua = $data['rua'];
-    $numero = $data['numero'];
-    $bairro = $data['bairro'];
-    $cep = $data['cep'];
-    $profissao = $data['profissao'];
-    $datanasc = $data['datanasc'];
-    $foto = $data['foto'];
+    $requiredFields = ['nome', 'email', 'telefone', 'cidade', 'rua', 'numero', 'bairro', 'cep', 'profissao', 'data_nasc', 'foto'];
+    validateRequiredFields($data, $requiredFields);
 
     try {
-        $stmt = $conn->prepare('INSERT INTO contatos (nome, telefone, email, cidade, rua, numero, bairro, cep, profissao, datanasc, foto) VALUES (:nome, :telefone, :email, :cidade, :rua, :numero, :bairro, :cep, :profissao, :datanasc, :foto)');
-        $stmt->bindParam(':nome', $nome);
-        $stmt->bindParam(':telefone', $telefone);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':cidade', $cidade);
-        $stmt->bindParam(':rua', $rua);
-        $stmt->bindParam(':numero', $numero);
-        $stmt->bindParam(':bairro', $bairro);
-        $stmt->bindParam(':cep', $cep);
-        $stmt->bindParam(':profissao', $profissao);
-        $stmt->bindParam(':datanasc', $datanasc);
-        $stmt->bindParam(':foto', $foto);
-        
+        $stmt = $conn->prepare('INSERT INTO contatos (nome, telefone, email, cidade, rua, numero, bairro, cep, profissao, data_nasc, foto) VALUES (:nome, :telefone, :email, :cidade, :rua, :numero, :bairro, :cep, :profissao, :data_nasc, :foto)');
+        foreach ($requiredFields as $field) {
+            $stmt->bindParam(":$field", $data[$field]);
+        }
         $stmt->execute();
         $taskId = $conn->lastInsertId();
-        echo json_encode(['id' => $taskId, 'nome' => $nome, 'telefone' => $telefone, 'email' => $email, 'cidade' => $cidade, 'rua' => $rua, 'numero' => $numero, 'bairro' => $bairro, 'cep' => $cep, 'profissao' => $profissao, 'datanasc' => $datanasc, 'foto' => $foto]);
+        sendResponse(['id' => $taskId] + $data);
     } catch (PDOException $e) {
-        echo json_encode(['error' => $e->getMessage()]);
+        sendResponse(['error' => $e->getMessage()], 500);
     }
 }
 
@@ -77,43 +65,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'PUT') {
     $data = json_decode(file_get_contents('php://input'), true);
 
     if (empty($data['id'])) {
-        echo json_encode(['error' => 'O ID do contato é obrigatório']);
-        exit;
+        sendResponse(['error' => 'O ID do contato é obrigatório'], 400);
     }
 
-    // tratar campos nulos
-    $id = $data['id'];
-    $nome = $data['nome'];
-    $telefone = $data['telefone'];
-    $email = $data['email'];
-    $cidade = $data['cidade'];
-    $rua = $data['rua'];
-    $numero = $data['numero'];
-    $bairro = $data['bairro'];
-    $cep = $data['cep'];
-    $profissao = $data['profissao'];
-    $datanasc = $data['datanasc'];
-    $foto = $data['foto'];
+    $requiredFields = ['nome', 'email', 'telefone', 'cidade', 'rua', 'numero', 'bairro', 'cep', 'profissao', 'data_nasc', 'foto'];
 
     try {
-        $stmt = $conn->prepare('UPDATE contatos SET nome= :nome, telefone= :telefone, email= :email, cidade= :cidade, rua= :rua, numero= :numero, bairro= :bairro, cep= :cep, profissao= :profissao, datanasc= :datanasc, foto= :foto WHERE id = :id');
-        $stmt->bindParam(':id', $id);
-        $stmt->bindParam(':nome', $nome);
-        $stmt->bindParam(':telefone', $telefone);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':cidade', $cidade);
-        $stmt->bindParam(':rua', $rua);
-        $stmt->bindParam(':numero', $numero);
-        $stmt->bindParam(':bairro', $bairro);
-        $stmt->bindParam(':cep', $cep);
-        $stmt->bindParam(':profissao', $profissao);
-        $stmt->bindParam(':datanasc', $datanasc);
-        $stmt->bindParam(':foto', $foto);
-
+        $stmt = $conn->prepare('UPDATE contatos SET nome= :nome, telefone= :telefone, email= :email, cidade= :cidade, rua= :rua, numero= :numero, bairro= :bairro, cep= :cep, profissao= :profissao, data_nasc= :data_nasc, foto= :foto WHERE id = :id');
+        $stmt->bindParam(':id', $data['id'], PDO::PARAM_INT);
+        foreach ($requiredFields as $field) {
+            $stmt->bindParam(":$field", $data[$field]);
+        }
         $stmt->execute();
-        echo json_encode(['success' => true]);
+        sendResponse(['success' => true]);
     } catch (PDOException $e) {
-        echo json_encode(['error' => $e->getMessage()]);
+        sendResponse(['error' => $e->getMessage()], 500);
     }
 }
 
@@ -122,18 +88,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'DELETE') {
     $data = json_decode(file_get_contents('php://input'), true);
 
     if (empty($data['id'])) {
-        echo json_encode(['error' => 'O ID do contato é obrigatório']);
-        exit;
+        sendResponse(['error' => 'O ID do contato é obrigatório'], 400);
     }
-
-    $id = $data['id'];
 
     try {
         $stmt = $conn->prepare('DELETE FROM contatos WHERE id = :id');
-        $stmt->bindParam(':id', $id);
+        $stmt->bindParam(':id', $data['id'], PDO::PARAM_INT);
         $stmt->execute();
-        echo json_encode(['success' => true]);
+        sendResponse(['success' => true]);
     } catch (PDOException $e) {
-        echo json_encode(['error' => $e->getMessage()]);
+        sendResponse(['error' => $e->getMessage()], 500);
     }
 }

@@ -1,15 +1,24 @@
 <?php
 session_start();
 
+if (!isset($_SESSION['logado'])) {
+    header("Location: login.php");
+    exit;
+}
+
 // Função para fazer requisições DELETE usando cURL
-function api_delete($endpoint) {
-    $url = 'http://localhost/agendasenac/classes/rest_basico.php' . $endpoint;
+function api_delete($id) {
+    $url = 'http://localhost/agendasenac/classes/rest_basico.php';
     $curl = curl_init();
     curl_setopt_array($curl, array(
         CURLOPT_URL => $url,
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
         CURLOPT_CUSTOMREQUEST => 'DELETE',
+        CURLOPT_POSTFIELDS => json_encode(['id' => $id]),
+        CURLOPT_HTTPHEADER => array(
+            'Content-Type: application/json'
+        )
     ));
     $response = curl_exec($curl);
     
@@ -37,25 +46,17 @@ function api_delete($endpoint) {
     return $decoded;
 }
 
-// Verifica se foi passado o ID do contato para exclusão
-if (!empty($_GET['id'])) {
+if (isset($_GET['id'])) {
     $id = $_GET['id'];
-    
-    // Endpoint da API para excluir contato
-    $endpoint = '/contatos?id=' . $id;
+    $result = api_delete($id);
 
-    // Realiza a requisição DELETE na API
-    $api_response = api_delete($endpoint);
-
-    if ($api_response !== false && isset($api_response['success']) && $api_response['success']) {
-        // Redireciona para a página de gestão de contatos após exclusão
-        header("Location: /agendaSenac/gestaoContatos.php");
+    if ($result !== false && isset($result['success'])) {
+        header("Location: gestaoContatos.php");
+        exit;
     } else {
-        echo '<script type="text/javascript">alert("Erro ao excluir contato!");</script>';
-        header("Location: /agendaSenac/gestaoContatos.php");
+        echo "Erro ao excluir o contato.";
     }
 } else {
-    echo '<script type="text/javascript">alert("ID do contato não especificado!");</script>';
-    header("Location: /agendaSenac/gestaoContatos.php");
+    echo "ID do contato não fornecido.";
 }
 ?>

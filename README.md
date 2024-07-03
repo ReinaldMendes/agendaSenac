@@ -87,11 +87,10 @@ Este projeto está licenciado sob a licença MIT - veja o arquivo [LICENSE](LICE
 
 ## Contato
 
-Para mais informações, entre em contato pelo email: [seu-email@exemplo.com](mailto:seu-email@exemplo.com)
+Para mais informações, entre em contato pelo email: [reinald_30_2009@hotmail.com](mailto:reinald_30_2009@hotmail.com)
 
 ---
 
-Feito com ❤️ por [Seu Nome](https://github.com/seu-usuario)
-```
+Feito com ❤️ por [Reinald Mendes](https://github.com/seu-usuario](https://github.com/ReinaldMendes)
 
-Certifique-se de substituir os placeholders como `seu-usuario`, `seu-email@exemplo.com`, e `Seu Nome` com suas informações reais. Adicionalmente, inclua o arquivo `LICENSE` no repositório, se necessário.
+

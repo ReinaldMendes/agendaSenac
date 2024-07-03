@@ -1,0 +1,46 @@
+.login-container {
+    max-width: 400px;
+    margin:  0 auto;
+    padding: 50px;
+    background-color: #0c0c0c;
+    border-radius: 8px;
+    box-shadow: 0 12px 50px rgb(255, 255, 255);
+    position: center;
+}
+.login-container h1 {
+    text-align: center;
+}
+.login-container form {
+    margin-top: 20px;
+}
+.login-container label {
+    display: block;
+    margin-bottom: 5px;
+}
+.login-container input[type="text"],
+.login-container input[type="password"],
+.login-container button {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid hsl(0, 0%, 100%);
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.login-container button {
+    background-color: #007bff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+}
+.login-container button:hover {
+    background-color: #0056b3;
+}
+body {
+    background-color: #ccc;
+    background-size: 500px 300px;; /* garante que a imagem cubra todo o fundo */
+    background-position: center; /* centraliza a imagem no fundo */
+    background-repeat: no-repeat; /* evita repetição da imagem */
+    color: white; /* define a cor do texto como branca para melhor legibilidade */
+   
+  }

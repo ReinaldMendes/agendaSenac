@@ -12,9 +12,10 @@ if(!empty($_POST['email'])){
     $cep= $_POST['cep'];
     $profissao = $_POST['profissao'];
     $foto = $_POST['foto'];
+    $data_nasc = $_POST['data_nasc'];
 
-    $contato->adicionar($email, $nome, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $foto);
-    header('Location: index.php');
+    $contato->adicionar($email, $nome, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $foto,$data_nasc);
+    header('Location: /agendaSenac/gestaoContatos.php');
 
 }else{
     echo '<script type= "text/javascript">alert("Email já cadastrado!!");</script>';

@@ -1,6 +1,6 @@
 <?php
 require 'conexao.class.php';  //para poder usar a classe conexao pelo banco de dados
-class Contatos {
+class Contatos {//idPrestador	ServicosOferecidos	areaAtuacao	horarioTrabalho	meioLocomocao
 
     private $id;
     private $nome ;
@@ -13,6 +13,7 @@ class Contatos {
 	private	$cep; 
 	private	$profissao; 
 	private $foto;
+    private $data_nasc;
 
     private $con;
 
@@ -34,7 +35,7 @@ class Contatos {
         }
         return $array;
     }  
-    public function adicionar($email, $nome, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $foto){
+    public function adicionar($email, $nome, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao,$foto, $data_nasc){
         $emailExistente = $this->existeEmail($email);
         if(count($emailExistente) == 0){
             try{
@@ -48,8 +49,10 @@ class Contatos {
                 $this->cep = $cep;
                 $this->profissao = $profissao;
                 $this->foto = $foto;
-                $sql = $this->con->conectar()->prepare("INSERT INTO contatos(nome, email, telefone, cidade, rua, numero, bairro, cep, profissao, foto)
-                    VALUES(:nome, :email, :telefone, :cidade, :rua, :numero, :bairro, :cep, :profissao, :foto)");
+                $this->data_nasc = $data_nasc;
+
+                $sql = $this->con->conectar()->prepare("INSERT INTO contatos(nome, email, telefone, cidade, rua, numero, bairro, cep, profissao, foto, data_nasc)
+                    VALUES(:nome, :email, :telefone, :cidade, :rua, :numero, :bairro, :cep, :profissao, :foto, :data_nasc)");
                     $sql->bindParam(":nome", $this->nome, PDO::PARAM_STR);
                     $sql->bindParam(":email", $this->email, PDO::PARAM_STR);
                     $sql->bindParam(":telefone", $this->telefone, PDO::PARAM_STR);
@@ -60,7 +63,7 @@ class Contatos {
                     $sql->bindParam(":cep", $this->cep, PDO::PARAM_STR);
                     $sql->bindParam(":profissao", $this->profissao, PDO::PARAM_STR);
                     $sql->bindParam(":foto", $this->foto, PDO::PARAM_STR);
-
+                    $sql->bindParam(":data_nasc", $this->data_nasc, PDO::PARAM_STR);
                     $sql->execute();
                 return TRUE;
 
@@ -76,7 +79,7 @@ class Contatos {
     }  
     public function listar(){
         try{
-            $sql = $this->con->conectar()->prepare("SELECT id, nome, email, telefone, cidade, rua, numero, bairro, cep, profissao, foto FROM contatos");
+            $sql = $this->con->conectar()->prepare("SELECT id, nome, email, telefone, cidade, rua, numero, bairro, cep, profissao, foto, data_nasc FROM contatos");
             $sql->execute(); 
             return $sql->fetchAll();           
 
@@ -99,7 +102,7 @@ class Contatos {
             echo"ERRO";
         }
     }
-    public function editar( $nome,$email, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $foto,$id){
+    public function editar( $nome,$email, $telefone, $cidade, $rua, $numero, $bairro, $cep, $profissao, $foto,$data_nasc, $id){
         $emailExistente = $this->existeEmail($email);
         if(count ($emailExistente )> 0 && $emailExistente['id']!=$id){
             return FALSE;
@@ -107,7 +110,7 @@ class Contatos {
             try{
                 $sql = $this->con->conectar()->prepare("UPDATE contatos SET nome = :nome, email= :email, telefone = :telefone, 
                 cidade = :cidade, rua = :rua, numero= :numero, bairro = :bairro, cep = :cep,
-                profissao = :profissao, foto = :foto WHERE id = :id ");
+                profissao = :profissao, foto = :foto, data_nasc = :data_nasc WHERE id = :id ");
                 $sql->bindValue(':nome', $nome); 
                 $sql->bindValue(':email', $email); 
                 $sql->bindValue(':telefone', $telefone); 
@@ -118,6 +121,7 @@ class Contatos {
                 $sql->bindValue(':cep', $cep); 
                 $sql->bindValue(':profissao', $profissao); 
                 $sql->bindValue(':foto', $foto); 
+                $sql->bindValue(':data_nasc', $data_nasc); 
                 $sql->bindValue(':id', $id); 
                 $sql->execute();
                 return TRUE;           
@@ -134,4 +138,5 @@ class Contatos {
         $sql->execute();
 
     }
+    
 }

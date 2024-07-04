@@ -29,8 +29,8 @@ h1 {
     <h1> ESCOLHA UMA DAS OPÇÕES </h1>
   </div>
 <ul>
-    <li><?php if ($users->temPermissoes('super') || $users->temPermissoes('del') ):?> <a class="btn btn-primary" href="gestaoUsuario.php">Gestão de Usuário</a> <?php endif;?> </li><br>
-     <li><?php if ($users->temPermissoes('add')):?> <a class="btn btn-primary" href="gestaoContatos.php">Gestão de Contatos</a> <?php endif;?></li><br>
+<?php if ($users->temPermissoes('super') || $users->temPermissoes('del') ):?> <li> <a class="btn btn-primary" href="gestaoUsuario.php">Gestão de Usuário</a></li><?php endif;?><br>
+<?php if ($users->temPermissoes('add')):?><li> <a class="btn btn-primary" href="gestaoContatos.php">Gestão de Contatos</a></li><?php endif;?><br>
 </ul>
     </div>
 </div>

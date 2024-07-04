@@ -23,11 +23,9 @@ if (!empty($_GET['id'])) {
 }
 ?>
 
-
 <div class="container">
     <h1 class="jumbotron-heading">Detalhes de Contato</h1>
     <table class="table table-bordered table-light">
-        
         <tr>
             <th>ID</th>
             <td><?php echo $info['id']; ?></td>
@@ -48,7 +46,6 @@ if (!empty($_GET['id'])) {
             <th>Rua</th>
             <td><?php echo $info['rua']; ?></td>
         </tr>
-
         <tr>
             <th>Numero</th>
             <td><?php echo $info['numero']; ?></td>
@@ -65,19 +62,19 @@ if (!empty($_GET['id'])) {
             <th>Profissao</th>
             <td><?php echo $info['profissao']; ?></td>
         </tr>
-       
         <tr>
             <th>Data Nascimento</th>
             <td><?php echo $info['data_nasc']; ?></td>
         </tr>
         <tr>
-            
-        <?php if(!empty($item['url'])):?>
-           
-            <img src = "img/contatos/<?php echo $item['url'];?>" height="50px" border="0"/>
-            <?php else: ?>    
-             <img src = "img/default.png"  height="150px" border="0"/>
-            <?php endif; ?>   
+            <th>Foto</th>
+            <td>
+                <?php if (!empty($info['url'])): ?>
+                    <img src="img/contatos/<?php echo $info['url']; ?>" height="150px" border="0"/>
+                <?php else: ?>    
+                    <img src="img/default.png" height="150px" border="0"/>
+                <?php endif; ?>  
+            </td>
         </tr>
     </table>
     <a class="btn btn-primary" href="gestaoContatos.php">Voltar</a>
@@ -86,4 +83,3 @@ if (!empty($_GET['id'])) {
 <?php
 include 'inc/footer.inc.php';
 ?>
-                                      

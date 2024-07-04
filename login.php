@@ -1,6 +1,6 @@
 <?php
 session_start(); 
-require_once 'inc/header.inc.php';
+require_once 'inc/headerLogin.inc.php';
 require 'classes/users.class.php';
 
 if(!empty($_POST ['email'])){
